@@ -171,11 +171,17 @@ footer a {
 /* ===== TEXT SEITEN (IMPRESSUM/DATENSCHUTZ) ===== */
 .text-page {
   max-width:800px;
-  margin:80px auto;
+  margin:100px auto 50px; /* Abstand nach oben wegen Topbar */
   padding:20px;
   text-align:left;
 }
 
 .text-page h1 {
   margin-bottom:20px;
+  font-size:28px;
+}
+
+.text-page p {
+  margin-bottom:15px;
+  line-height:1.7;
 }
