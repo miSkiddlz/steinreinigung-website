@@ -1,56 +1,24 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  line-height: 1.6;
+body { margin:0; font-family:Arial; }
+.hero {
+  background:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952') center/cover;
+  height:100vh;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
+.overlay { background:rgba(0,0,0,0.6); padding:40px; text-align:center; }
+.btn { background:#2ecc71; padding:10px 20px; color:white; text-decoration:none; }
+section { padding:50px 20px; text-align:center; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+.card { background:#f4f4f4; padding:20px; border-radius:10px; }
 
-header {
-  background: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952') center/cover;
-  color: white;
-  text-align: center;
-  padding: 100px 20px;
-}
+.slider { position:relative; max-width:600px; margin:auto; }
+.slider img { width:100%; position:absolute; top:0; left:0; }
+.slider .after { clip-path: inset(0 50% 0 0); }
+.slider input { width:100%; margin-top:300px; }
 
-.btn {
-  background: #2ecc71;
-  color: white;
-  padding: 12px 20px;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-section {
-  padding: 50px 20px;
-  text-align: center;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background: #f4f4f4;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.kontakt form {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  margin: auto;
-}
-
-.kontakt input, .kontakt textarea {
-  margin: 10px 0;
-  padding: 10px;
-}
-
-footer {
-  background: #222;
-  color: white;
-  padding: 20px;
-}
+.kontakt form { display:flex; flex-direction:column; max-width:400px; margin:auto; }
+.kontakt input, textarea { margin:10px 0; padding:10px; }
+.whatsapp { display:inline-block; margin-top:10px; background:#25D366; color:white; padding:10px; }
+footer { background:#222; color:white; padding:20px; }
