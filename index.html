@@ -3,24 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Steinreinigung Groß-Gerau</title>
+  <title>[Firmenname] – Steinreinigung Groß-Gerau</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>[Firmenname]</h1>
-  <p>Professionelle Steinreinigung in Groß-Gerau & Umgebung</p>
-  <a href="#kontakt" class="btn">Jetzt anfragen</a>
+<header class="hero">
+  <div class="overlay">
+    <h1>[Firmenname]</h1>
+    <p>Ihre Steinflächen wie neu – ohne Austausch</p>
+    <a href="#kontakt" class="btn">Jetzt Anfrage senden</a>
+  </div>
 </header>
 
 <section class="leistungen">
   <h2>Unsere Leistungen</h2>
   <div class="grid">
-    <div class="card">Steinreinigung (Terrasse & Einfahrt)</div>
-    <div class="card">Fugenreinigung & Versiegelung</div>
-    <div class="card">Öl- & Rostentfernung</div>
-    <div class="card">Graffitientfernung</div>
+    <div class="card">Terrassenreinigung</div>
+    <div class="card">Einfahrten & Pflaster</div>
+    <div class="card">Fugen & Versiegelung</div>
+    <div class="card">Öl-, Rost- & Graffitientfernung</div>
+  </div>
+</section>
+
+<section class="slider-section">
+  <h2>Vorher / Nachher</h2>
+  <div class="slider">
+    <img src="https://images.unsplash.com/photo-1597007030739-6d2e8c7a0c1c" class="before">
+    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952" class="after">
+    <input type="range" min="0" max="100" value="50" id="sliderRange">
   </div>
 </section>
 
@@ -34,16 +45,6 @@
   </ul>
 </section>
 
-<section class="ablauf">
-  <h2>So funktioniert’s</h2>
-  <ol>
-    <li>Anfrage senden</li>
-    <li>Probefläche vor Ort</li>
-    <li>Angebot erhalten</li>
-    <li>Reinigung durchführen</li>
-  </ol>
-</section>
-
 <section id="kontakt" class="kontakt">
   <h2>Kontakt</h2>
   <form>
@@ -52,12 +53,15 @@
     <textarea placeholder="Nachricht"></textarea>
     <button type="submit">Absenden</button>
   </form>
+  <a href="https://wa.me/49123456789" class="whatsapp">WhatsApp</a>
 </section>
 
 <footer>
   <p>© 2026 [Firmenname]</p>
-  <p><a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+  <a href="impressum.html">Impressum</a>
+  <a href="datenschutz.html">Datenschutz</a>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
