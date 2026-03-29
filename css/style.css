@@ -233,16 +233,20 @@ footer a {
   color: #333;
 }
 
+/* FAQ */
 .faq {
-  background: #f9f9f9;
-  padding: 2rem;
-  margin: 2rem 0;
+  background: #f8f8f8; /* hellgrau, damit Fragen sichtbar sind */
+  padding: 3rem 1.5rem;
   border-radius: 12px;
+  margin: 3rem 0;
 }
 
 .faq h2 {
+  font-family: 'Arial', sans-serif; /* gleiche Schrift wie restliche Seite */
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 1.5rem;
+  color: #222; /* dunkle Farbe passend zu Überschriften */
+  margin-bottom: 2rem;
 }
 
 .faq-item {
@@ -253,8 +257,11 @@ footer a {
 .faq-question {
   width: 100%;
   text-align: left;
-  padding: 1rem;
+  padding: 1rem 0;
+  font-family: inherit;
+  font-size: 1.2rem;
   font-weight: 600;
+  color: #222;
   border: none;
   background: none;
   cursor: pointer;
@@ -262,10 +269,8 @@ footer a {
 
 .faq-answer {
   display: none;
-  padding: 0 1rem 1rem 1rem;
-  color: #555;
-}
-
-.faq-answer p {
-  margin: 0;
+  padding: 0.5rem 0 1rem 0;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #444;
 }
