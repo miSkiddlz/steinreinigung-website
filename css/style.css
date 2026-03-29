@@ -476,3 +476,66 @@ footer a:hover {
 h1, h2, h3 {
   font-weight: 600;
 }
+
+/* ===== RANGE SLIDER STYLE ===== */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Track (Chrome) */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #0091AC;
+  border-radius: 5px;
+}
+
+/* Thumb (der Punkt) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #0091AC;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -6px;
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-track {
+  background: #0091AC;
+}
+
+input[type="range"]::-moz-range-thumb {
+  background: #0091AC;
+  border: none;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.kontakt input,
+.kontakt textarea {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 12px;
+}
+
+.kontakt input:focus,
+.kontakt textarea:focus {
+  outline: none;
+  border-color: #0091AC;
+  box-shadow: 0 0 0 2px rgba(0,145,172,0.2);
+}
