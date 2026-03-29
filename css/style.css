@@ -539,3 +539,63 @@ button {
   border-color: #0091AC;
   box-shadow: 0 0 0 2px rgba(0,145,172,0.2);
 }
+
+/* ===== FAQ ZENTRIERUNG ===== */
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* zentriert horizontal */
+  text-align: center;  /* zentriert Text */
+}
+
+.faq-answer {
+  text-align: center; /* falls noch extra */
+}
+
+/* ===== PREISRECHNER SLIDER ===== */
+#flaeche {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px; /* Dicke des Tracks */
+  background: #ccc; /* Track grau */
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Punkt (Thumb) */
+#flaeche::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #0091AC; /* Punkt bleibt blau */
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  margin-top: -5px; /* zentriert auf Track */
+}
+
+#flaeche::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #0091AC;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+/* optional: Firefox Track */
+#flaeche::-moz-range-track {
+  background: #ccc;
+  height: 10px;
+  border-radius: 5px;
+}
+
+/* ===== TOPBAR HEIGHT ===== */
+.topbar {
+  padding: 15px 20px; /* statt vorher 10px */
+}
+
+body {
+  padding-top: 70px; /* damit Inhalt nicht unter Topbar rutscht */
+}
