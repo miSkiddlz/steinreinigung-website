@@ -58,6 +58,27 @@
   </ul>
 </section>
 
+  <!-- Preisrechner -->
+<section class="preisrechner">
+  <h2>Preisrechner</h2>
+  
+  <label for="reinigungsart">Reinigungsart wählen:</label>
+  <select id="reinigungsart">
+    <option value="terrasse">Terrassenreinigung</option>
+    <option value="einfahrt">Einfahrten & Pflaster</option>
+    <option value="fugen">Fugen & Versiegelung</option>
+    <option value="graffiti">Öl-, Rost- & Graffitientfernung</option>
+  </select>
+
+  <label for="flaeche">Fläche in m²:</label>
+  <input type="range" id="flaeche" min="10" max="200" value="50">
+  <span id="flaecheValue">50 m²</span>
+
+  <div class="preis">
+    <h3>Preis: <span id="preisAnzeigen">–</span> €</h3>
+  </div>
+</section>
+
 <!-- NEUES ANFRAGEPORTAL -->
 <section id="kontakt" class="kontakt">
   <h2>Kontakt</h2>
