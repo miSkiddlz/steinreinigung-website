@@ -1,44 +1,41 @@
 console.log("Website läuft");
 
 // ======== VORHER/NACHHER SLIDER ========
-const baWrap = document.querySelector('.ba-wrap');
-const baAfter = document.querySelector('.ba-after');
-const baHandle = document.querySelector('.ba-handle');
+const sliders = document.querySelectorAll('.ba-wrap');
 
-let isDragging = false;
+sliders.forEach(slider => {
+  const after = slider.querySelector('.ba-after');
+  const handle = slider.querySelector('.ba-handle');
 
-if (baWrap && baAfter && baHandle) {
+  let isDragging = false;
 
   const updateSlider = (x) => {
-    const rect = baWrap.getBoundingClientRect();
+    const rect = slider.getBoundingClientRect();
     let position = x - rect.left;
     position = Math.max(0, Math.min(position, rect.width));
 
     const percent = (position / rect.width) * 100;
 
-    baAfter.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
-    baHandle.style.left = `${percent}%`;
+    after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+    handle.style.left = `${percent}%`;
   };
 
-  // Maus gedrückt → starten
-  baHandle.addEventListener('mousedown', () => {
+  handle.addEventListener('mousedown', () => {
     isDragging = true;
   });
 
-  // Maus loslassen → stoppen
   window.addEventListener('mouseup', () => {
     isDragging = false;
   });
 
-  // Bewegen nur wenn gedrückt
   window.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     updateSlider(e.clientX);
   });
 
-  // Startposition setzen
-  updateSlider(baWrap.getBoundingClientRect().left + baWrap.offsetWidth / 2);
-}
+  // Startposition Mitte
+  updateSlider(slider.getBoundingClientRect().left + slider.offsetWidth / 2);
+});
 
 // ======== KONTAKTFORMULAR / ANFRAGEPORTAL ========
 const cfName = document.getElementById('cfName');
