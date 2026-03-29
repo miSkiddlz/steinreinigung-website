@@ -53,10 +53,9 @@ const preisAnzeigen = document.getElementById('preisAnzeigen');
 
 // Preise pro m² je Leistung
 const preisProM2 = {
-  terrasse: 3,
-  einfahrt: 2.5,
-  fugen: 4,
-  graffiti: 5
+  terrasse: 10,
+  einfahrt: 12,
+  fugen: 15,
 };
 
 // Berechnung
