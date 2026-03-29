@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Firmenname] – Steinreinigung Groß-Gerau</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- TOPBAR -->
 <div class="topbar">
   <div class="container">
     <div class="logo">[Logo]</div>
@@ -9,14 +19,6 @@
     </nav>
   </div>
 </div>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[Firmenname] – Steinreinigung Groß-Gerau</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
 <header class="hero">
   <div class="overlay">
@@ -26,7 +28,7 @@
   </div>
 </header>
 
-<section class="leistungen">
+<section class="leistungen" id="leistungen">
   <h2>Unsere Leistungen</h2>
   <div class="grid">
     <div class="card">Terrassenreinigung</div>
@@ -36,12 +38,13 @@
   </div>
 </section>
 
-<section class="slider-section">
+<!-- NEUER VORHER/NACHHER SLIDER -->
+<section class="ba-section">
   <h2>Vorher / Nachher</h2>
-  <div class="slider">
-    <img src="https://images.unsplash.com/photo-1597007030739-6d2e8c7a0c1c" class="before">
-    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952" class="after">
-    <input type="range" min="0" max="100" value="50" id="sliderRange">
+  <div class="ba-wrap">
+    <div class="ba-before" style="background-image:url('https://images.unsplash.com/photo-1597007030739-6d2e8c7a0c1c');"></div>
+    <div class="ba-after" style="background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952');"></div>
+    <div class="ba-handle"></div>
   </div>
 </section>
 
@@ -55,15 +58,17 @@
   </ul>
 </section>
 
+<!-- NEUES ANFRAGEPORTAL -->
 <section id="kontakt" class="kontakt">
   <h2>Kontakt</h2>
-  <form>
-    <input type="text" placeholder="Name" required>
-    <input type="email" placeholder="E-Mail" required>
-    <textarea placeholder="Nachricht"></textarea>
-    <button type="submit">Absenden</button>
+  <form id="contactForm">
+    <input type="text" placeholder="Name" id="cfName" required>
+    <input type="email" placeholder="E-Mail" id="cfEmail" required>
+    <textarea placeholder="Nachricht" id="cfMessage" required></textarea>
+    <button type="button" id="cfSubmit">Absenden</button>
   </form>
   <a href="https://wa.me/49123456789" class="whatsapp">WhatsApp</a>
+  <div id="cfFeedback" style="display:none; margin-top:10px; color:green;">Danke! Ihre Nachricht wurde gesendet.</div>
 </section>
 
 <footer>
@@ -72,6 +77,6 @@
   <a href="datenschutz.html">Datenschutz</a>
 </footer>
 
-<script src="script.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
