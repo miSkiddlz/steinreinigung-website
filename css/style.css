@@ -540,23 +540,30 @@ button {
   box-shadow: 0 0 0 2px rgba(0,145,172,0.2);
 }
 
-/* ===== FAQ ZENTRIERUNG ===== */
+/* ===== FAQ FRAGEN + ANTWORTEN ZENTRIERT ===== */
 .faq-item {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Box zentriert horizontal */
-  justify-content: center; /* Inhalt vertikal mittig, falls nötig */
-  text-align: center;  /* Text zentriert */
+  align-items: center; /* zentriert horizontal */
+  justify-content: center;
+  text-align: center; /* Text innerhalb zentrieren */
+  padding: 15px 10px; /* optional: Abstand innen */
 }
 
-.faq-question, .faq-answer {
-  width: 100%; /* gleiche Breite für Frage + Antwort */
-  max-width: 600px; /* optional, gleiche Breite wie restliche Box */
-  margin: 0 auto; /* zentriert innerhalb des Containers */
+.faq-question {
+  display: inline-block; /* wichtig, damit max-width wirkt */
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
 }
 
 .faq-answer {
-  text-align: center; /* falls noch extra */
+  display: block; /* block für volle Breite */
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 10px;
+  padding: 0 5px; /* optional: etwas Innenabstand */
 }
 
 /* ===== PREISRECHNER SLIDER ===== */
