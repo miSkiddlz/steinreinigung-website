@@ -87,11 +87,19 @@ section {
 }
 
 /* ===== SLIDER FIX ===== */
+.ba-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .ba-wrap {
   position: relative;
   width: 100%;
-  max-width: 600px;
-  height: 400px; /* fixierte Höhe */
+  flex: 1 1 300px;
+  max-width: 400px;
+  height: 300px;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
