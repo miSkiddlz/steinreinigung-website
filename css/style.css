@@ -274,3 +274,23 @@ footer a {
   font-size: 1rem;
   color: #444;
 }
+
+/* Container fix für mittige Felder */
+.container {
+  max-width: 1200px; /* oder 1000px, je nach Layout */
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Preisrechner / FAQ */
+.preisrechner .rechner,
+.faq .faq-item {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px; /* begrenzt die Breite */
+}
+
+/* FAQ Fragen/Antworten */
+.faq-question {
+  width: 100%;
+}
