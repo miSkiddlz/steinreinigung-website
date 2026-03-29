@@ -87,34 +87,40 @@ section {
 }
 
 /* ===== SLIDER FIX ===== */
-.slider {
+.ba-wrap {
   position: relative;
+  width: 100%;
   max-width: 600px;
-  margin: 50px auto; /* mehr Abstand */
-  height: 400px;     /* fixierte Höhe */
-  overflow: hidden;  /* Bild bleibt innerhalb */
+  height: 400px; /* fixierte Höhe */
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
 }
 
-.slider img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;  /* Bild proportional */
+.ba-before,
+.ba-after {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
 }
 
-.slider .after {
-  position:absolute;
-  top:0;
-  left:0;
-  height:100%;
+.ba-after {
   clip-path: inset(0 50% 0 0);
 }
 
-.slider input {
-  width:100%;
-  margin-top:10px;
+.ba-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: #fff;
+  cursor: ew-resize;
+  transform: translateX(-50%);
 }
 
 /* ===== VORTEILE ===== */
