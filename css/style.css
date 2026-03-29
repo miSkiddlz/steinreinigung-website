@@ -441,10 +441,6 @@ button:hover,
 }
 
 /* ===== HEADER / HERO ===== */
-.hero {
-  background-color: #B1B1CD !important;
-  background-image: none !important; /* entfernt das Bild */
-}
 
 /* Overlay ggf. anpassen */
 .overlay {
@@ -453,7 +449,7 @@ button:hover,
 
 /* ===== FOOTER ===== */
 footer {
-  background: #B1B1CD !important;
+  background: #191919 !important;
   color: white;
 }
 
@@ -469,7 +465,7 @@ footer a:hover {
 
 /* ===== NAVBAR (optional angleichen) ===== */
 .topbar {
-  background: #B1B1CD !important;
+  background: #191919 !important;
 }
 
 /* Links in Navbar */
