@@ -89,7 +89,7 @@ section {
 /* ===== SLIDER FIX ===== */
 .ba-container {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   justify-content: center;
   flex-wrap: wrap;
 }
