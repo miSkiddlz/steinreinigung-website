@@ -355,61 +355,49 @@ footer a {
   height: 24px;
 }
 
-/* ===== SECTION DESIGN UPGRADE ===== */
+/* ===== FINAL SECTION STYLING FIX ===== */
 
-/* Allgemeine Section-Abstände */
-.ba-section,
-.preisrechner,
-.kontakt {
-  padding: 100px 20px;
-  position: relative;
-  z-index: 1;
-}
-
-/* Leicht bläuliche Hintergründe */
 .ba-section {
-  background: #eef4ff;
+  background: #eef4ff !important;
 }
 
 .preisrechner {
-  background: #ffffff;
+  background: #ffffff !important;
 }
 
 .kontakt {
-  background: #eef4ff;
+  background: #eef4ff !important;
 }
 
-/* ===== WAVE SEPARATOR (OBEN) ===== */
-.ba-section::before,
-.kontakt::before {
-  content: "";
-  position: absolute;
-  top: -60px;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: inherit;
-  border-top-left-radius: 100% 60px;
-  border-top-right-radius: 100% 60px;
-}
-
-/* ===== WAVE SEPARATOR (UNTEN) ===== */
-.ba-section::after,
-.preisrechner::after {
-  content: "";
-  position: absolute;
-  bottom: -60px;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: inherit;
-  border-bottom-left-radius: 100% 60px;
-  border-bottom-right-radius: 100% 60px;
-}
-
-/* ===== OPTIONAL: SOFTER SHADOW LOOK ===== */
+/* Mehr Abstand */
 .ba-section,
 .preisrechner,
 .kontakt {
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  padding: 100px 20px !important;
+  position: relative;
+}
+
+/* Sichtbare Wellen */
+.ba-section::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #eef4ff;
+  border-bottom-left-radius: 100% 40px;
+  border-bottom-right-radius: 100% 40px;
+}
+
+.preisrechner::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #ffffff;
+  border-bottom-left-radius: 100% 40px;
+  border-bottom-right-radius: 100% 40px;
 }
