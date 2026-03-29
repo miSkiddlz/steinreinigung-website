@@ -51,7 +51,7 @@ const flaeche = document.getElementById('flaeche');
 const flaecheValue = document.getElementById('flaecheValue');
 const preisAnzeigen = document.getElementById('preisAnzeigen');
 
-// Beispielpreise pro m²
+// Preise pro m² je Leistung
 const preisProM2 = {
   terrasse: 3,
   einfahrt: 2.5,
@@ -59,11 +59,12 @@ const preisProM2 = {
   graffiti: 5
 };
 
+// Berechnung
 const berechnePreis = () => {
   const art = reinigungsart.value;
   const qm = parseInt(flaeche.value);
   const preis = qm * preisProM2[art];
-  flaecheValue.textContent = `${qm} m²`;
+  flaecheValue.textContent = qm;
   preisAnzeigen.textContent = preis.toFixed(2);
 };
 
