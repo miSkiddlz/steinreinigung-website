@@ -190,3 +190,45 @@ footer a {
   margin-bottom:15px;
   line-height:1.7;
 }
+
+.preisrechner {
+  background: #f9f9f9;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.preisrechner h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.input-group select,
+.input-group input[type="range"] {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.input-group input[type="range"] {
+  width: 100%;
+}
+
+.preis h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: #333;
+}
