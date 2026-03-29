@@ -358,15 +358,15 @@ footer a {
 /* ===== FINAL SECTION STYLING FIX ===== */
 
 .ba-section {
-  background: #78D5F1 !important;
+  background: #8DE2F4 !important;
 }
 
 .preisrechner {
-  background: #78D5F1 !important;
+  background: #8DE2F4 !important;
 }
 
 .kontakt {
-  background: #78D5F1 !important;
+  background: #8DE2F4 !important;
 }
 
 /* Mehr Abstand */
@@ -385,7 +385,7 @@ footer a {
   left: 0;
   width: 100%;
   height: 40px;
-  background: #78D5F1;
+  background: #8DE2F4;
   border-bottom-left-radius: 100% 40px;
   border-bottom-right-radius: 100% 40px;
 }
@@ -397,7 +397,86 @@ footer a {
   left: 0;
   width: 100%;
   height: 40px;
-  background: #78D5F1;
+  background: #8DE2F4;
   border-bottom-left-radius: 100% 40px;
   border-bottom-right-radius: 100% 40px;
+}
+
+/* ===== GLOBAL FONT ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===== LEISTUNGEN BOXEN ===== */
+.card {
+  background: #0091AC !important;
+  color: white !important;
+  padding: 25px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  opacity: 0.9;
+}
+
+/* ===== BUTTONS (Hero + Kontakt) ===== */
+.btn,
+button,
+#cfSubmit {
+  background: #0091AC !important;
+  color: white !important;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover,
+button:hover,
+#cfSubmit:hover {
+  background: #007a91 !important;
+}
+
+/* ===== HEADER / HERO ===== */
+.hero {
+  background-color: #B1B1CD !important;
+  background-image: none !important; /* entfernt das Bild */
+}
+
+/* Overlay ggf. anpassen */
+.overlay {
+  background: rgba(0,0,0,0.4);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #B1B1CD !important;
+  color: white;
+}
+
+/* Footer Links weiß */
+footer a {
+  color: white !important;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===== NAVBAR (optional angleichen) ===== */
+.topbar {
+  background: #B1B1CD !important;
+}
+
+/* Links in Navbar */
+.topbar a {
+  color: white;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
 }
