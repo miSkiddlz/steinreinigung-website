@@ -6,17 +6,14 @@ const baAfter = document.querySelector('.ba-after');
 const baHandle = document.querySelector('.ba-handle');
 
 if (baWrap && baAfter && baHandle) {
-  const moveHandle = (x) => {
+  baWrap.addEventListener('mousemove', e => {
     const rect = baWrap.getBoundingClientRect();
-    let pos = x - rect.left;
-    pos = Math.max(0, Math.min(pos, rect.width));
-    const percent = (pos / rect.width) * 100;
-    baAfter.style.width = percent + '%';
-    baHandle.style.left = percent + '%';
-  };
-
-  baWrap.addEventListener('mousemove', (e) => moveHandle(e.clientX));
-  baWrap.addEventListener('touchmove', (e) => moveHandle(e.touches[0].clientX));
+    let x = e.clientX - rect.left;
+    x = Math.max(0, Math.min(x, rect.width)); // zwischen 0 und width
+    const percent = (x / rect.width) * 100;
+    baAfter.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+    baHandle.style.left = `${percent}%`;
+  });
 }
 
 // ======== KONTAKTFORMULAR / ANFRAGEPORTAL ========
