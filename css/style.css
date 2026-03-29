@@ -544,8 +544,15 @@ button {
 .faq-item {
   display: flex;
   flex-direction: column;
-  align-items: center; /* zentriert horizontal */
-  text-align: center;  /* zentriert Text */
+  align-items: center; /* Box zentriert horizontal */
+  justify-content: center; /* Inhalt vertikal mittig, falls nötig */
+  text-align: center;  /* Text zentriert */
+}
+
+.faq-question, .faq-answer {
+  width: 100%; /* gleiche Breite für Frage + Antwort */
+  max-width: 600px; /* optional, gleiche Breite wie restliche Box */
+  margin: 0 auto; /* zentriert innerhalb des Containers */
 }
 
 .faq-answer {
@@ -556,23 +563,37 @@ button {
 #flaeche {
   -webkit-appearance: none;
   width: 100%;
-  height: 10px; /* Dicke des Tracks */
-  background: #ccc; /* Track grau */
+  height: 10px; /* Track-Höhe */
+  background: #fff; /* Slider-Hintergrund bleibt weiß */
   border-radius: 5px;
   outline: none;
+  position: relative;
+}
+
+/* Linie selbst (grau) mit Pseudo-Element */
+#flaeche::-webkit-slider-runnable-track {
+  height: 10px;
+  background: #ccc; /* graue Linie */
+  border-radius: 5px;
+}
+
+#flaeche::-moz-range-track {
+  height: 10px;
+  background: #ccc; /* Firefox graue Linie */
+  border-radius: 5px;
 }
 
 /* Punkt (Thumb) */
 #flaeche::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
   width: 20px;
   height: 20px;
-  background: #0091AC; /* Punkt bleibt blau */
+  background: #0091AC; /* blauer Punkt */
   border-radius: 50%;
-  cursor: pointer;
   border: 2px solid white;
+  cursor: pointer;
   margin-top: -5px; /* zentriert auf Track */
+  transition: transform 0.2s;
 }
 
 #flaeche::-moz-range-thumb {
@@ -582,13 +603,16 @@ button {
   border-radius: 50%;
   border: 2px solid white;
   cursor: pointer;
+  transition: transform 0.2s;
 }
 
-/* optional: Firefox Track */
-#flaeche::-moz-range-track {
-  background: #ccc;
-  height: 10px;
-  border-radius: 5px;
+/* optional Hover-Effekt auf Punkt */
+#flaeche::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+#flaeche::-moz-range-thumb:hover {
+  transform: scale(1.2);
 }
 
 /* ===== TOPBAR HEIGHT ===== */
