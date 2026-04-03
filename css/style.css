@@ -39,7 +39,7 @@ body {
 
 /* ===== HERO ===== */
 .hero {
-  background:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952') center/cover;
+  background:url('assets/images/HeadCover.png') center/cover;
   height:100vh;
   color:white;
   display:flex;
