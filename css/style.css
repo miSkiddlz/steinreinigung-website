@@ -42,7 +42,7 @@ body {
   height: 80vh;
   background:
     linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-    url('assets/images/HeadCover.png') center/cover no-repeat;
+    url('../assets/images/HeadCover.png') center/cover no-repeat;
   color:white;
   display:flex;
   align-items:center;
