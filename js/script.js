@@ -4,6 +4,8 @@ const formatEuro = (value) =>
     currency: 'EUR'
   }).format(value);
 
+const CALCULATOR_STORAGE_KEY = 'martinReinigungstechnikCalculator';
+
 const initBeforeAfterSliders = () => {
   const sliders = document.querySelectorAll('.ba-wrap');
 
@@ -85,6 +87,37 @@ const initContactForm = () => {
 
   if (!cfSubmit) return;
 
+  let calculatorConfiguration = null;
+  try {
+    const storedConfiguration = localStorage.getItem(CALCULATOR_STORAGE_KEY);
+    const requestedTransfer = new URLSearchParams(window.location.search).get('calculator') === '1';
+
+    if (storedConfiguration && requestedTransfer) {
+      calculatorConfiguration = JSON.parse(storedConfiguration);
+
+      const transferNote = document.createElement('div');
+      transferNote.className = 'calculator-transfer-note';
+      transferNote.innerHTML = '<strong>Preisrechner-Konfiguration übernommen</strong><span>Die ausgewählten Angaben und die Kostenschätzung wurden automatisch in die Nachricht eingefügt.</span>';
+      cfSubmit.closest('form')?.prepend(transferNote);
+
+      if (cfSubject) {
+        const matchingOption = [...cfSubject.options].find((option) => option.textContent.includes('Pflasterreinigung'));
+        if (matchingOption) cfSubject.value = matchingOption.value;
+      }
+
+      if (cfMessage && calculatorConfiguration.summary) {
+        cfMessage.value = `Hallo, ich interessiere mich für folgende unverbindliche Konfiguration:
+
+${calculatorConfiguration.summary}
+
+Zusätzliche Nachricht:
+`;
+      }
+    }
+  } catch (error) {
+    console.warn('Preisrechner-Konfiguration konnte nicht geladen werden.', error);
+  }
+
   if (cfFiles && cfFilesInfo) {
     cfFiles.addEventListener('change', () => {
       const fileCount = cfFiles.files ? cfFiles.files.length : 0;
@@ -110,7 +143,8 @@ const initContactForm = () => {
       phone: cfPhone?.value || '',
       subject: cfSubject?.value || '',
       message: cfMessage.value,
-      files: cfFiles?.files ? [...cfFiles.files].map((file) => file.name) : []
+      files: cfFiles?.files ? [...cfFiles.files].map((file) => file.name) : [],
+      calculatorConfiguration
     };
 
     console.info('Kontaktformular gespeichert:', payload);
@@ -126,79 +160,323 @@ const initContactForm = () => {
     cfMessage.value = '';
     if (cfFiles) cfFiles.value = '';
     if (cfFilesInfo) cfFilesInfo.textContent = 'Keine Bilder ausgewählt';
+    if (calculatorConfiguration) localStorage.removeItem(CALCULATOR_STORAGE_KEY);
   });
 };
 
 const initPriceCalculator = () => {
-  const service = document.getElementById('calcService');
+  const stoneType = document.getElementById('calcStoneType');
   const condition = document.getElementById('calcCondition');
   const areaInput = document.getElementById('calcArea');
   const areaRange = document.getElementById('calcAreaRange');
   const joints = document.getElementById('calcJoints');
-  const baseOutput = document.getElementById('calcBaseOutput');
-  const conditionOutput = document.getElementById('calcConditionOutput');
-  const jointOutput = document.getElementById('calcJointOutput');
-  const totalOutput = document.getElementById('calcTotalOutput');
-  const materialOutput = document.getElementById('calcMaterialOutput');
+  const impregnation = document.getElementById('calcImpregnation');
+  const colorEnhancer = document.getElementById('calcColorEnhancer');
+  const weedTreatment = document.getElementById('calcWeedTreatment');
+  const jointSettings = document.getElementById('jointSettings');
+  const jointMaterial = document.getElementById('calcJointMaterial');
+  const stoneWidth = document.getElementById('calcStoneWidth');
+  const stoneLength = document.getElementById('calcStoneLength');
+  const jointWidth = document.getElementById('calcJointWidth');
+  const jointDepth = document.getElementById('calcJointDepth');
+  const receiptItems = document.getElementById('receiptItems');
+  const receiptStone = document.getElementById('receiptStone');
+  const receiptArea = document.getElementById('receiptArea');
+  const receiptCondition = document.getElementById('receiptCondition');
+  const receiptTravel = document.getElementById('receiptTravel');
+  const receiptNet = document.getElementById('receiptNet');
+  const receiptVat = document.getElementById('receiptVat');
+  const receiptGross = document.getElementById('receiptGross');
+  const receiptPerSqm = document.getElementById('receiptPerSqm');
+  const inquiryButton = document.getElementById('calcInquiryButton');
+  const printButton = document.getElementById('calcPrintButton');
 
-  if (!service || !condition || !areaInput || !areaRange) return;
+  if (!stoneType || !condition || !areaInput || !areaRange || !receiptItems) return;
 
-  const basePrices = {
-    terrasse: 10,
-    einfahrt: 12,
-    parkplatz: 9,
-    fassade: 14
+  // Alle Preise sind Netto-Richtwerte und können später zentral hier angepasst werden.
+  const pricing = {
+    vatRate: 0.19,
+    travelFlat: 80,
+    cleaningPerSquareMeter: 8,
+    stones: {
+      concrete: { label: 'Betonpflaster / Betonstein', factor: 1 },
+      natural: { label: 'Naturstein', factor: 1.25 },
+      clinker: { label: 'Klinker / Ziegelpflaster', factor: 1.15 },
+      porcelain: { label: 'Feinsteinzeug / Keramik', factor: 1.1 },
+      washed: { label: 'Waschbeton', factor: 1.2 },
+      unknown: { label: 'Nicht sicher / Sonstiges', factor: 1.1 }
+    },
+    conditions: {
+      light: { label: 'Leicht verschmutzt', factor: 1 },
+      normal: { label: 'Normal verschmutzt', factor: 1.15 },
+      strong: { label: 'Stark verschmutzt', factor: 1.35 },
+      extreme: { label: 'Sehr stark verschmutzt', factor: 1.6 }
+    },
+    jointMaterials: {
+      standard: { label: 'Standard-Fugensand', pricePerKg: 1.2, laborPerSquareMeter: 3.5, densityKgPerLiter: 1.55 },
+      weed: { label: 'Unkrauthemmender Fugensand', pricePerKg: 1.9, laborPerSquareMeter: 4.25, densityKgPerLiter: 1.55 },
+      polymer: { label: 'Polymer-Fugensand', pricePerKg: 3.2, laborPerSquareMeter: 6.5, densityKgPerLiter: 1.5 }
+    },
+    impregnation: { label: 'Farblos imprägnieren', litersPerSquareMeter: 0.12, pricePerLiter: 6.3, laborPerSquareMeter: 4 },
+    colorEnhancer: { label: 'Farbvertiefender Schutz', litersPerSquareMeter: 0.14, pricePerLiter: 8.3, laborPerSquareMeter: 5 },
+    weedTreatment: { label: 'Thermische Unkrautbehandlung', pricePerSquareMeter: 1.2, minimum: 120 }
   };
 
-  const clampArea = (value) => {
-    const numeric = Number(value) || 10;
-    return Math.max(10, Math.min(1000, numeric));
+  let lastConfiguration = null;
+
+  const clampNumber = (value, min, max, fallback) => {
+    const number = Number(value);
+    if (!Number.isFinite(number)) return fallback;
+    return Math.max(min, Math.min(max, number));
   };
 
-  const syncAreaInputs = (value) => {
-    const area = clampArea(value);
+  const roundTo = (value, decimals = 2) => {
+    const factor = 10 ** decimals;
+    return Math.round((value + Number.EPSILON) * factor) / factor;
+  };
+
+  const syncAreaFromNumber = () => {
+    const area = clampNumber(areaInput.value, 5, 1000, 50);
     areaInput.value = area;
-    areaRange.value = area;
+    areaRange.value = Math.min(area, Number(areaRange.max));
     return area;
   };
 
-  const updateCalculator = () => {
-    const area = syncAreaInputs(areaInput.value);
-    const basePricePerSquareMeter = basePrices[service.value] || 0;
-    const conditionFactor = Number(condition.value) || 1;
-    const basePrice = area * basePricePerSquareMeter;
-    const jointPricePerSquareMeter = joints?.checked ? 3 : 0;
-    const jointCost = area * jointPricePerSquareMeter;
-    const total = (basePrice * conditionFactor) + jointCost;
-
-    if (baseOutput) baseOutput.textContent = formatEuro(basePrice);
-    if (conditionOutput) conditionOutput.textContent = `${conditionFactor.toFixed(2).replace('.', ',')}×`;
-    if (jointOutput) jointOutput.textContent = formatEuro(jointCost);
-    if (totalOutput) totalOutput.textContent = formatEuro(total);
-
-    if (materialOutput) {
-      if (joints?.checked) {
-        const kg = Math.max(1, Math.round(area * 0.5));
-        materialOutput.textContent = `Geschätzter Materialbedarf für Nachsandung: ca. ${kg} kg.`;
-      } else {
-        materialOutput.textContent = 'Kein zusätzlicher Materialbedarf berechnet.';
-      }
-    }
+  const syncAreaFromRange = () => {
+    const area = clampNumber(areaRange.value, 5, Number(areaRange.max), 50);
+    areaInput.value = area;
+    return area;
   };
 
-  areaInput.addEventListener('input', () => {
-    syncAreaInputs(areaInput.value);
-    updateCalculator();
-  });
+  const calculateJointQuantity = (area, material) => {
+    const stoneWidthM = clampNumber(stoneWidth?.value, 5, 100, 10) / 100;
+    const stoneLengthM = clampNumber(stoneLength?.value, 5, 100, 20) / 100;
+    const jointWidthM = clampNumber(jointWidth?.value, 1, 30, 5) / 1000;
+    const jointDepthM = clampNumber(jointDepth?.value, 5, 80, 30) / 1000;
 
+    const moduleArea = (stoneWidthM + jointWidthM) * (stoneLengthM + jointWidthM);
+    const stoneArea = stoneWidthM * stoneLengthM;
+    const jointShare = Math.max(0.01, 1 - (stoneArea / moduleArea));
+    const volumeLiters = area * jointShare * jointDepthM * 1000;
+    const kilograms = volumeLiters * material.densityKgPerLiter * 1.1;
+
+    return {
+      stoneWidthCm: stoneWidthM * 100,
+      stoneLengthCm: stoneLengthM * 100,
+      jointWidthMm: jointWidthM * 1000,
+      jointDepthMm: jointDepthM * 1000,
+      kilograms: Math.max(1, Math.ceil(kilograms))
+    };
+  };
+
+  const createReceiptItem = ({ title, total, details = [], note = '' }) => {
+    const detailMarkup = details.map((detail) => `
+      <div class="receipt-detail-line">
+        <span>${detail.label}</span>
+        <strong>${detail.value}</strong>
+      </div>
+    `).join('');
+
+    return `
+      <article class="receipt-item">
+        <div class="receipt-item__heading">
+          <strong>${title}</strong>
+          <span>${formatEuro(total)}</span>
+        </div>
+        <div class="receipt-item__details">${detailMarkup}</div>
+        ${note ? `<p class="receipt-item__note">${note}</p>` : ''}
+      </article>
+    `;
+  };
+
+  const buildConfigurationText = (configuration) => {
+    const itemLines = configuration.items
+      .map((item) => `- ${item.title}: ${formatEuro(item.total)}`)
+      .join('\n');
+
+    return [
+      'Konfiguration aus dem Preisrechner',
+      '',
+      `Steinart: ${configuration.stoneLabel}`,
+      `Fläche: ${configuration.area} m²`,
+      `Verschmutzung: ${configuration.conditionLabel}`,
+      '',
+      'Ausgewählte Leistungen:',
+      itemLines,
+      `- Anfahrt und Rüstzeit: ${formatEuro(configuration.travel)}`,
+      '',
+      `Gesamt Netto: ${formatEuro(configuration.net)}`,
+      `Mehrwertsteuer (19 %): ${formatEuro(configuration.vat)}`,
+      `Geschätzt Brutto: ${formatEuro(configuration.gross)}`,
+      `Brutto je m²: ${formatEuro(configuration.grossPerSquareMeter)}`,
+      '',
+      'Die Berechnung ist unverbindlich und dient nur als erste Orientierung.'
+    ].join('\n');
+  };
+
+  const updateCalculator = () => {
+    const area = syncAreaFromNumber();
+    const selectedStone = pricing.stones[stoneType.value] || pricing.stones.unknown;
+    const selectedCondition = pricing.conditions[condition.value] || pricing.conditions.normal;
+    const items = [];
+
+    const cleaningRate = pricing.cleaningPerSquareMeter * selectedStone.factor * selectedCondition.factor;
+    const cleaningTotal = area * cleaningRate;
+    items.push({
+      title: 'Flächenreinigung im Hochdruck-/Niederdruckverfahren',
+      total: cleaningTotal,
+      details: [
+        { label: 'Fläche', value: `${area} m²` },
+        { label: 'Preis je m²', value: formatEuro(cleaningRate) }
+      ],
+      note: `Steinfaktor ${selectedStone.factor.toFixed(2).replace('.', ',')} × Verschmutzungsfaktor ${selectedCondition.factor.toFixed(2).replace('.', ',')}.`
+    });
+
+    if (joints?.checked) {
+      const material = pricing.jointMaterials[jointMaterial?.value] || pricing.jointMaterials.standard;
+      const quantity = calculateJointQuantity(area, material);
+      const materialCost = quantity.kilograms * material.pricePerKg;
+      const laborCost = area * material.laborPerSquareMeter;
+      const total = materialCost + laborCost;
+
+      items.push({
+        title: material.label,
+        total,
+        details: [
+          { label: 'Materialkosten', value: `${quantity.kilograms} kg × ${formatEuro(material.pricePerKg)} = ${formatEuro(materialCost)}` },
+          { label: 'Verarbeitung', value: `${area} m² × ${formatEuro(material.laborPerSquareMeter)} = ${formatEuro(laborCost)}` }
+        ],
+        note: `Berechnet mit ${quantity.stoneWidthCm.toFixed(1).replace('.', ',')} × ${quantity.stoneLengthCm.toFixed(1).replace('.', ',')} cm Steinmaß, ${quantity.jointWidthMm.toFixed(0)} mm Fugenbreite und ${quantity.jointDepthMm.toFixed(0)} mm Fugentiefe inklusive 10 % Materialreserve.`
+      });
+    }
+
+    if (impregnation?.checked) {
+      const service = pricing.impregnation;
+      const liters = Math.max(1, Math.ceil(area * service.litersPerSquareMeter));
+      const materialCost = liters * service.pricePerLiter;
+      const laborCost = area * service.laborPerSquareMeter;
+      items.push({
+        title: service.label,
+        total: materialCost + laborCost,
+        details: [
+          { label: 'Materialkosten', value: `${liters} L × ${formatEuro(service.pricePerLiter)} = ${formatEuro(materialCost)}` },
+          { label: 'Verarbeitung', value: `${area} m² × ${formatEuro(service.laborPerSquareMeter)} = ${formatEuro(laborCost)}` }
+        ]
+      });
+    }
+
+    if (colorEnhancer?.checked) {
+      const service = pricing.colorEnhancer;
+      const liters = Math.max(1, Math.ceil(area * service.litersPerSquareMeter));
+      const materialCost = liters * service.pricePerLiter;
+      const laborCost = area * service.laborPerSquareMeter;
+      items.push({
+        title: service.label,
+        total: materialCost + laborCost,
+        details: [
+          { label: 'Materialkosten', value: `${liters} L × ${formatEuro(service.pricePerLiter)} = ${formatEuro(materialCost)}` },
+          { label: 'Verarbeitung', value: `${area} m² × ${formatEuro(service.laborPerSquareMeter)} = ${formatEuro(laborCost)}` }
+        ]
+      });
+    }
+
+    if (weedTreatment?.checked) {
+      const service = pricing.weedTreatment;
+      const calculated = area * service.pricePerSquareMeter;
+      const total = Math.max(service.minimum, calculated);
+      items.push({
+        title: service.label,
+        total,
+        details: [
+          { label: 'Behandlung', value: calculated < service.minimum ? `Mindestpauschale ${formatEuro(service.minimum)}` : `${area} m² × ${formatEuro(service.pricePerSquareMeter)}` }
+        ],
+        note: 'Einmalige thermische Behandlung. Bei starkem Wiederbewuchs können weitere Termine sinnvoll sein.'
+      });
+    }
+
+    const serviceNet = items.reduce((sum, item) => sum + item.total, 0);
+    const net = serviceNet + pricing.travelFlat;
+    const vat = net * pricing.vatRate;
+    const gross = net + vat;
+    const grossPerSquareMeter = gross / area;
+
+    receiptItems.innerHTML = items.map(createReceiptItem).join('');
+    if (receiptStone) receiptStone.textContent = selectedStone.label;
+    if (receiptArea) receiptArea.textContent = `${area} m²`;
+    if (receiptCondition) receiptCondition.textContent = selectedCondition.label;
+    if (receiptTravel) receiptTravel.textContent = formatEuro(pricing.travelFlat);
+    if (receiptNet) receiptNet.textContent = formatEuro(net);
+    if (receiptVat) receiptVat.textContent = formatEuro(vat);
+    if (receiptGross) receiptGross.textContent = formatEuro(gross);
+    if (receiptPerSqm) receiptPerSqm.textContent = `${formatEuro(grossPerSquareMeter)}/m²`;
+    if (jointSettings) jointSettings.hidden = !joints?.checked;
+
+    lastConfiguration = {
+      createdAt: new Date().toISOString(),
+      stoneType: stoneType.value,
+      stoneLabel: selectedStone.label,
+      condition: condition.value,
+      conditionLabel: selectedCondition.label,
+      area,
+      joints: Boolean(joints?.checked),
+      jointMaterial: jointMaterial?.value || null,
+      stoneWidthCm: Number(stoneWidth?.value || 0),
+      stoneLengthCm: Number(stoneLength?.value || 0),
+      jointWidthMm: Number(jointWidth?.value || 0),
+      jointDepthMm: Number(jointDepth?.value || 0),
+      impregnation: Boolean(impregnation?.checked),
+      colorEnhancer: Boolean(colorEnhancer?.checked),
+      weedTreatment: Boolean(weedTreatment?.checked),
+      items: items.map((item) => ({ title: item.title, total: roundTo(item.total) })),
+      travel: pricing.travelFlat,
+      net: roundTo(net),
+      vat: roundTo(vat),
+      gross: roundTo(gross),
+      grossPerSquareMeter: roundTo(grossPerSquareMeter)
+    };
+    lastConfiguration.summary = buildConfigurationText(lastConfiguration);
+  };
+
+  areaInput.addEventListener('input', updateCalculator);
+  areaInput.addEventListener('change', updateCalculator);
   areaRange.addEventListener('input', () => {
-    syncAreaInputs(areaRange.value);
+    syncAreaFromRange();
     updateCalculator();
   });
 
-  service.addEventListener('change', updateCalculator);
-  condition.addEventListener('change', updateCalculator);
-  joints?.addEventListener('change', updateCalculator);
+  [stoneType, condition, joints, jointMaterial, stoneWidth, stoneLength, jointWidth, jointDepth, weedTreatment]
+    .filter(Boolean)
+    .forEach((element) => element.addEventListener('change', updateCalculator));
+
+  [stoneWidth, stoneLength, jointWidth, jointDepth]
+    .filter(Boolean)
+    .forEach((element) => element.addEventListener('input', updateCalculator));
+
+  impregnation?.addEventListener('change', () => {
+    if (impregnation.checked && colorEnhancer) colorEnhancer.checked = false;
+    updateCalculator();
+  });
+
+  colorEnhancer?.addEventListener('change', () => {
+    if (colorEnhancer.checked && impregnation) impregnation.checked = false;
+    updateCalculator();
+  });
+
+  inquiryButton?.addEventListener('click', () => {
+    updateCalculator();
+    if (!lastConfiguration) return;
+
+    localStorage.setItem(CALCULATOR_STORAGE_KEY, JSON.stringify(lastConfiguration));
+    const target = window.location.protocol === 'file:'
+      ? '../index.html?calculator=1#kontakt'
+      : '/index.html?calculator=1#kontakt';
+    window.location.href = target;
+  });
+
+  printButton?.addEventListener('click', () => {
+    updateCalculator();
+    window.print();
+  });
 
   updateCalculator();
 };

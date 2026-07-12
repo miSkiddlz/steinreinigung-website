@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Preisrechner – Martin Reinigungstechnik</title>
-  <meta name="description" content="Erste, unverbindliche Preisorientierung für Stein- und Pflasterreinigung.">
+  <meta name="description" content="Unverbindliche Kostenschätzung für Stein-, Pflaster- und Terrassenreinigung inklusive Fugenmaterial, Zusatzleistungen, Anfahrt und Mehrwertsteuer.">
   <link rel="icon" type="image/png" href="/assets/icons/m.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body class="calculator-page">
 <div class="site-shell">
   <div class="topbar">
     <div class="container topbar__inner">
@@ -28,87 +28,222 @@
   </div>
 
   <main>
-    <section class="page-hero">
+    <section class="page-hero page-hero--calculator">
       <div class="container page-hero__content">
         <div class="page-hero__copy">
           <span class="eyebrow">Preisrechner</span>
-          <h1>Preis für deine Steinreinigung <span>realistisch einschätzen</span></h1>
+          <h1>Deine Reinigung <span>transparent kalkuliert</span></h1>
           <p>
-            Diese Berechnung dient als unverbindliche Orientierung. Fläche, Verschmutzung und gewünschte Zusatzleistungen
-            werden direkt berücksichtigt – inklusive optionaler Nachsandung.
+            Wähle Fläche, Steinart, Verschmutzung und gewünschte Zusatzleistungen. Rechts entsteht sofort eine
+            nachvollziehbare Kostenschätzung inklusive Material, Anfahrt und Mehrwertsteuer.
           </p>
-          <a href="#rechner" class="btn btn--primary">Jetzt berechnen</a>
+          <a href="#rechner" class="btn btn--primary">Berechnung starten</a>
         </div>
       </div>
     </section>
 
-    <section class="section section--dark" id="rechner">
-      <div class="container calculator-layout">
-        <div class="calculator-panel">
-          <div class="section-heading section-heading--left">
-            <span class="eyebrow">Rechner</span>
-            <h2>In wenigen Klicks zur <span>ersten Kostenschätzung</span></h2>
+    <section class="section section--dark calculator-section" id="rechner">
+      <div class="container calculator-layout calculator-layout--detailed">
+        <div class="calculator-panel calculator-panel--detailed">
+          <div class="section-heading section-heading--left calculator-heading">
+            <span class="eyebrow">Konfiguration</span>
+            <h2>Was soll <span>gereinigt werden?</span></h2>
+            <p>Alle Angaben können jederzeit geändert werden. Die Schätzung rechts aktualisiert sich automatisch.</p>
           </div>
 
-          <div class="form-grid form-grid--calculator">
-            <div class="form-field">
-              <label for="calcService">Art der Reinigung</label>
-              <select id="calcService">
-                <option value="terrasse">Terrasse / Steinfläche</option>
-                <option value="einfahrt">Einfahrt / Pflaster</option>
-                <option value="parkplatz">Parkplatz / größere Fläche</option>
-                <option value="fassade">Fassade / Mauerwerk</option>
-              </select>
-            </div>
-
-            <div class="form-field">
-              <label for="calcCondition">Zustand der Fläche</label>
-              <select id="calcCondition">
-                <option value="1">Leicht verschmutzt</option>
-                <option value="1.15">Normal verschmutzt</option>
-                <option value="1.35">Stark verschmutzt</option>
-              </select>
-            </div>
-
-            <div class="form-field form-field--full">
-              <label for="calcArea">Fläche in m²</label>
-              <div class="range-group">
-                <input type="number" id="calcArea" min="10" max="1000" value="50">
-                <input type="range" id="calcAreaRange" min="10" max="1000" value="50">
+          <section class="calc-block" aria-labelledby="calcAreaHeading">
+            <div class="calc-block__heading">
+              <span class="calc-step">01</span>
+              <div>
+                <h3 id="calcAreaHeading">Fläche und Zustand</h3>
+                <p>Grundlage für Reinigungsaufwand und Preis.</p>
               </div>
             </div>
 
-            <div class="form-field form-field--full checkbox-field">
-              <label class="checkbox-label">
+            <div class="form-grid form-grid--calculator">
+              <div class="form-field">
+                <label for="calcStoneType">Steinart</label>
+                <select id="calcStoneType">
+                  <option value="concrete">Betonpflaster / Betonstein</option>
+                  <option value="natural">Naturstein</option>
+                  <option value="clinker">Klinker / Ziegelpflaster</option>
+                  <option value="porcelain">Feinsteinzeug / Keramik</option>
+                  <option value="washed">Waschbeton</option>
+                  <option value="unknown">Nicht sicher / Sonstiges</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="calcCondition">Verschmutzungsgrad</label>
+                <select id="calcCondition">
+                  <option value="light">Leicht – oberflächlicher Schmutz</option>
+                  <option value="normal" selected>Normal – Algen oder leichter Bewuchs</option>
+                  <option value="strong">Stark – Moos und deutliche Ablagerungen</option>
+                  <option value="extreme">Sehr stark – hartnäckige Verschmutzung</option>
+                </select>
+              </div>
+
+              <div class="form-field form-field--full">
+                <label for="calcArea">Fläche in m²</label>
+                <div class="range-group range-group--with-value">
+                  <div class="range-value-wrap">
+                    <input type="number" id="calcArea" min="5" max="1000" step="1" value="50">
+                    <span>m²</span>
+                  </div>
+                  <input type="range" id="calcAreaRange" min="5" max="300" step="1" value="50" aria-label="Fläche in Quadratmetern">
+                </div>
+                <small>Flächen über 300 m² können ebenfalls eingetragen werden und werden individuell geprüft.</small>
+              </div>
+            </div>
+          </section>
+
+          <section class="calc-block" aria-labelledby="calcServicesHeading">
+            <div class="calc-block__heading">
+              <span class="calc-step">02</span>
+              <div>
+                <h3 id="calcServicesHeading">Gewünschte Arbeiten</h3>
+                <p>Reinigung ist immer enthalten. Zusatzleistungen kannst du frei ergänzen.</p>
+              </div>
+            </div>
+
+            <div class="option-grid">
+              <div class="option-card option-card--fixed">
+                <div class="option-card__check" aria-hidden="true">✓</div>
+                <div>
+                  <strong>Flächenreinigung</strong>
+                  <span>Hochdruck- oder materialschonendes Niederdruckverfahren</span>
+                </div>
+                <em>Enthalten</em>
+              </div>
+
+              <label class="option-card">
                 <input type="checkbox" id="calcJoints">
-                <span>Neuverfugung / Nachsandung einbeziehen</span>
+                <span class="option-card__check" aria-hidden="true"></span>
+                <span class="option-card__copy">
+                  <strong>Fugen erneuern</strong>
+                  <span>Ausgewaschene Fugen neu auffüllen und fachgerecht einarbeiten</span>
+                </span>
+              </label>
+
+              <label class="option-card">
+                <input type="checkbox" id="calcImpregnation">
+                <span class="option-card__check" aria-hidden="true"></span>
+                <span class="option-card__copy">
+                  <strong>Farblos imprägnieren</strong>
+                  <span>Wasser- und schmutzabweisender Schutz ohne Farbveränderung</span>
+                </span>
+              </label>
+
+              <label class="option-card">
+                <input type="checkbox" id="calcColorEnhancer">
+                <span class="option-card__check" aria-hidden="true"></span>
+                <span class="option-card__copy">
+                  <strong>Farbvertiefender Schutz</strong>
+                  <span>Schutzbehandlung mit stärkerer Betonung der Steinfarbe</span>
+                </span>
+              </label>
+
+              <label class="option-card">
+                <input type="checkbox" id="calcWeedTreatment">
+                <span class="option-card__check" aria-hidden="true"></span>
+                <span class="option-card__copy">
+                  <strong>Thermische Unkrautbehandlung</strong>
+                  <span>Behandlung von starkem Unkrautbewuchs ohne chemische Zusätze</span>
+                </span>
               </label>
             </div>
+          </section>
+
+          <section class="calc-block calc-block--conditional" id="jointSettings" aria-labelledby="jointSettingsHeading" hidden>
+            <div class="calc-block__heading">
+              <span class="calc-step">03</span>
+              <div>
+                <h3 id="jointSettingsHeading">Fugen und Steinmaße</h3>
+                <p>Damit Materialbedarf und Verarbeitung realistisch geschätzt werden können.</p>
+              </div>
+            </div>
+
+            <div class="form-grid form-grid--calculator">
+              <div class="form-field form-field--full">
+                <label for="calcJointMaterial">Fugenmaterial</label>
+                <select id="calcJointMaterial">
+                  <option value="standard">Standard-Fugensand</option>
+                  <option value="weed">Unkrauthemmender Fugensand</option>
+                  <option value="polymer">Polymer-Fugensand</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="calcStoneWidth">Steinbreite</label>
+                <div class="unit-input"><input type="number" id="calcStoneWidth" min="5" max="100" step="0.5" value="10"><span>cm</span></div>
+              </div>
+
+              <div class="form-field">
+                <label for="calcStoneLength">Steinlänge</label>
+                <div class="unit-input"><input type="number" id="calcStoneLength" min="5" max="100" step="0.5" value="20"><span>cm</span></div>
+              </div>
+
+              <div class="form-field">
+                <label for="calcJointWidth">Fugenbreite</label>
+                <div class="unit-input"><input type="number" id="calcJointWidth" min="1" max="30" step="1" value="5"><span>mm</span></div>
+              </div>
+
+              <div class="form-field">
+                <label for="calcJointDepth">Fugentiefe</label>
+                <div class="unit-input"><input type="number" id="calcJointDepth" min="5" max="80" step="1" value="30"><span>mm</span></div>
+              </div>
+            </div>
+          </section>
+
+          <div class="calculator-notice">
+            <strong>Hinweis zur Preisgrundlage</strong>
+            <p>Die Werte sind unverbindliche Richtwerte. Zugänglichkeit, Untergrund, Wasseranschluss und Sonderverschmutzungen können das finale Angebot verändern.</p>
           </div>
         </div>
 
-        <aside class="result-panel">
-          <span class="eyebrow">Ergebnis</span>
-          <h3>Deine Schätzung</h3>
-          <div class="result-line">
-            <span>Grundpreis</span>
-            <strong id="calcBaseOutput">500,00 €</strong>
+        <aside class="receipt-panel" id="calculatorReceipt" aria-live="polite">
+          <div class="receipt-panel__top">
+            <span class="eyebrow">Kostenschätzung</span>
+            <h3>Deine Konfiguration</h3>
+            <div class="receipt-meta">
+              <span id="receiptStone">Betonpflaster</span>
+              <span id="receiptArea">50 m²</span>
+              <span id="receiptCondition">Normal verschmutzt</span>
+            </div>
           </div>
-          <div class="result-line">
-            <span>Zustandsfaktor</span>
-            <strong id="calcConditionOutput">1,00×</strong>
+
+          <div class="receipt-items" id="receiptItems"></div>
+
+          <div class="receipt-travel">
+            <div class="receipt-line receipt-line--title">
+              <strong>Anfahrt und Rüstzeit</strong>
+              <strong id="receiptTravel">80,00 €</strong>
+            </div>
+            <p>Hin- und Rückfahrt inklusive Transport des Equipments sowie Auf- und Abbau der Technik am Einsatzort.</p>
           </div>
-          <div class="result-line">
-            <span>Nachsandung</span>
-            <strong id="calcJointOutput">0,00 €</strong>
+
+          <div class="receipt-totals">
+            <div class="receipt-line">
+              <span>Gesamt Netto</span>
+              <strong id="receiptNet">0,00 €</strong>
+            </div>
+            <div class="receipt-line">
+              <span>+19 % MwSt.</span>
+              <strong id="receiptVat">0,00 €</strong>
+            </div>
+            <div class="receipt-line receipt-line--gross">
+              <span>Gesamt Brutto</span>
+              <span id="receiptPerSqm">0,00 €/m²</span>
+              <strong id="receiptGross">0,00 €</strong>
+            </div>
           </div>
-          <div class="result-total">
-            <span>Geschätzter Gesamtpreis</span>
-            <strong id="calcTotalOutput">500,00 €</strong>
+
+          <div class="receipt-actions">
+            <button type="button" id="calcInquiryButton" class="btn btn--primary btn--full">Unverbindliche Anfrage senden</button>
+            <button type="button" id="calcPrintButton" class="btn btn--secondary btn--full">Schätzung drucken / als PDF speichern</button>
           </div>
-          <p id="calcMaterialOutput" class="result-note">Kein zusätzlicher Materialbedarf berechnet.</p>
-          <p class="result-disclaimer">Hinweis: Die Berechnung ist unverbindlich und ersetzt kein individuelles Angebot vor Ort.</p>
-          <a href="/#kontakt" class="btn btn--secondary btn--full">Unverbindliche Anfrage senden</a>
+
+          <p class="result-disclaimer">Diese automatische Berechnung stellt kein verbindliches Angebot dar.</p>
         </aside>
       </div>
     </section>
