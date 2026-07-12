@@ -1,133 +1,225 @@
+:root {
+  --color-primary: #0091ac;
+  --color-primary-dark: #007a91;
+  --color-accent-light: #8de2f4;
+  --color-dark: #191919;
+  --color-page: #f5f5f5;
+  --color-text: #222;
+  --color-border: #ccc;
+  --content-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  margin:0;
-  font-family: 'Poppins' , sans-serif;
-  line-height:1.6;
-  background: #f5f5f5;
+  margin: 0;
+  padding-top: 70px;
+  background: var(--color-page);
+  color: var(--color-text);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 /* ===== TOPBAR ===== */
 .topbar {
-  position:fixed;
-  top:0;
-  width:100%;
-  background:#111;
-  color:white;
-  z-index:1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color-dark);
+  color: white;
+  z-index: 1000;
 }
 
 .topbar .container {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 20px;
-}
-
-.topbar a {
-  color:white;
-  margin-left:15px;
-  text-decoration:none;
+  display: flex;
+  min-height: 70px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
-  font-weight:bold;
+  display: flex;
+  align-items: center;
 }
 
-/* Abstand wegen fixed navbar */
-body {
-  padding-top:60px;
+.logo img {
+  display: block;
+  width: 110px;
+  height: 40px;
+}
+
+.topbar nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.topbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.topbar a:hover,
+.topbar a:focus-visible {
+  text-decoration: underline;
 }
 
 /* ===== HERO ===== */
 .hero {
-  height: 80vh;
-  background: url('../assets/images/HeadCover.png') center/cover no-repeat;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
   position: relative;
+  display: flex;
+  height: 80vh;
+  min-height: 480px;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-}
-
-.hero-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  background: url('../assets/images/HeadCover.png') center / cover no-repeat;
+  color: white;
+  text-align: center;
 }
 
 .hero::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 150px;
-
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-
   mask-image: linear-gradient(to bottom, transparent, black);
   -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+  pointer-events: none;
 }
 
 .overlay {
-  background:rgba(0,0,0,0.6);
-  padding:40px;
-  border-radius:10px;
+  position: relative;
+  z-index: 1;
+  max-width: 850px;
+  margin: 20px;
+  padding: 40px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* ===== BUTTONS ===== */
+.btn,
+#cfSubmit {
+  border: none;
+  border-radius: 6px;
+  background: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  padding: 12px 25px;
+  transition: background 0.3s, transform 0.2s;
 }
 
 .btn {
-  background:#2ecc71;
-  padding:12px 25px;
-  color:white;
-  text-decoration:none;
-  display:inline-block;
-  margin-top:15px;
-  border-radius:5px;
+  display: inline-block;
+  margin-top: 15px;
+  text-decoration: none;
+}
+
+.btn:hover,
+#cfSubmit:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.ba-handle:focus-visible {
+  outline: 3px solid rgba(0, 145, 172, 0.35);
+  outline-offset: 3px;
 }
 
 /* ===== SECTIONS ===== */
 section {
-  padding:60px 20px;
-  text-align:center;
+  padding: 60px 20px;
+  text-align: center;
 }
 
 .grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
 .card {
-  background:#f4f4f4;
-  padding:25px;
-  border-radius:10px;
-  transition:0.3s;
+  padding: 25px;
+  border-radius: 10px;
+  background: var(--color-primary);
+  color: white;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 .card:hover {
-  transform:translateY(-5px);
+  transform: translateY(-5px);
+  opacity: 0.9;
 }
 
-/* ===== SLIDER FIX ===== */
+/* ===== VORHER / NACHHER ===== */
+.ba-section,
+.preisrechner,
+.kontakt {
+  position: relative;
+  padding: 100px 20px;
+  background: var(--color-accent-light);
+}
+
 .ba-container {
   display: flex;
-  gap: 5px;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
 }
 
 .ba-wrap {
   position: relative;
-  width: 100%;
   flex: 1 1 300px;
+  width: 100%;
   max-width: 400px;
   height: 300px;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
+  touch-action: none;
+  user-select: none;
 }
 
 .ba-before,
@@ -137,8 +229,8 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
   background-position: center;
+  background-size: cover;
 }
 
 .ba-after {
@@ -149,121 +241,77 @@ section {
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 10;
+  display: flex;
   width: 60px;
   height: 60px;
-  background: white;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  cursor: grab;
-  z-index: 10;
-
-  display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: white;
+  color: #333;
+  cursor: grab;
+  transform: translate(-50%, -50%);
 }
 
-/* optional: kleiner Pfeil links/rechts */
 .ba-handle::before {
-  content: "↔";
+  content: '↔';
   font-size: 20px;
-  color: #333;
 }
 
 .ba-handle:active {
   cursor: grabbing;
 }
 
+.ba-section::after,
+.preisrechner::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 40px;
+  border-bottom-right-radius: 100% 40px;
+  border-bottom-left-radius: 100% 40px;
+  background: var(--color-accent-light);
+  pointer-events: none;
+}
+
 /* ===== VORTEILE ===== */
 .vorteile ul {
-  list-style:none;
-  padding:0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .vorteile li {
-  margin:10px 0;
-  font-weight:bold;
+  margin: 10px 0;
+  font-weight: 600;
 }
 
-/* ===== KONTAKT ===== */
-.kontakt form {
-  display:flex;
-  flex-direction:column;
-  max-width:400px;
-  margin:auto;
-}
-
-.kontakt input,
-.kontakt textarea {
-  margin:10px 0;
-  padding:12px;
-  border-radius:5px;
-  border:1px solid #ccc;
-}
-
-button {
-  background:#2ecc71;
-  color:white;
-  padding:12px;
-  border:none;
-  border-radius:5px;
-}
-
-.whatsapp {
-  display:inline-block;
-  margin-top:15px;
-  background:#25D366;
-  color:white;
-  padding:12px 20px;
-  border-radius:5px;
-}
-
-/* ===== FOOTER ===== */
-footer {
-  background:#222;
-  color:white;
-  padding:30px;
-}
-
-footer a {
-  color:#2ecc71;
-  margin:0 10px;
-}
-
-/* ===== TEXT SEITEN (IMPRESSUM/DATENSCHUTZ) ===== */
-.text-page {
-  max-width:800px;
-  margin:100px auto 50px; /* Abstand nach oben wegen Topbar */
-  padding:20px;
-  text-align:left;
-}
-
-.text-page h1 {
-  margin-bottom:20px;
-  font-size:28px;
-}
-
-.text-page p {
-  margin-bottom:15px;
-  line-height:1.7;
-}
-
+/* ===== PREISRECHNER ===== */
 .preisrechner {
-  background: #f9f9f9;
-  padding: 2rem;
   margin: 2rem 0;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .preisrechner h2 {
-  text-align: center;
   margin-bottom: 1.5rem;
 }
 
+.preisrechner .container {
+  max-width: 650px;
+}
+
 .input-group {
-  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
+  margin-bottom: 1.5rem;
+  text-align: left;
 }
 
 .input-group label {
@@ -271,108 +319,185 @@ footer a {
   font-weight: 600;
 }
 
-.input-group select,
-.input-group input[type="range"] {
-  padding: 0.5rem;
+.input-group select {
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
   border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-.input-group input[type="range"] {
-  width: 100%;
+  background: white;
 }
 
 .preis h3 {
-  text-align: center;
-  font-size: 1.5rem;
   margin-top: 1rem;
   color: #333;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
-/* FAQ */
+#flaeche {
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: white;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#flaeche::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 5px;
+  background: #ccc;
+}
+
+#flaeche::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  margin-top: -5px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  transition: transform 0.2s;
+  -webkit-appearance: none;
+}
+
+#flaeche::-moz-range-track {
+  height: 10px;
+  border-radius: 5px;
+  background: #ccc;
+}
+
+#flaeche::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#flaeche::-webkit-slider-thumb:hover,
+#flaeche::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* ===== FAQ ===== */
 .faq {
-  background: #f8f8f8; /* hellgrau, damit Fragen sichtbar sind */
+  margin: 3rem 0;
   padding: 3rem 1.5rem;
   border-radius: 12px;
-  margin: 3rem 0;
+  background: #f8f8f8;
 }
 
 .faq h2 {
-  font-family: 'Arial', sans-serif; /* gleiche Schrift wie restliche Seite */
-  font-size: 2rem;
-  text-align: center;
-  color: #222; /* dunkle Farbe passend zu Überschriften */
   margin-bottom: 2rem;
+  color: #222;
+  font-size: 2rem;
 }
 
 .faq-item {
-  margin-bottom: 1rem;
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  padding: 15px 10px;
+  flex-direction: column;
+  align-items: center;
   border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
 .faq-question {
   width: 100%;
-  text-align: left;
+  border: none;
   padding: 1rem 0;
-  font-family: inherit;
+  background: none;
+  color: #222;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #222;
-  border: none;
+  text-align: center;
+}
+
+.faq-question:hover {
   background: none;
-  cursor: pointer;
+  color: var(--color-primary-dark);
 }
 
 .faq-answer {
   display: none;
-  padding: 0.5rem 0 1rem 0;
-  font-family: inherit;
-  font-size: 1rem;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 5px 1rem;
   color: #444;
+  text-align: center;
 }
 
-/* Container fix für mittige Felder */
-.container {
-  max-width: 1200px; /* oder 1000px, je nach Layout */
-  margin: 0 auto;
-  padding: 0 1.5rem;
+.faq-answer.is-open {
+  display: block;
 }
 
-/* Preisrechner / FAQ */
-.preisrechner .rechner,
-.faq .faq-item {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 600px; /* begrenzt die Breite */
+.faq-answer p {
+  margin: 0;
 }
 
-/* FAQ Fragen/Antworten */
-.faq-question {
-  width: 100%;
+/* ===== KONTAKT ===== */
+.kontakt form {
+  display: flex;
+  max-width: 400px;
+  margin: auto;
+  flex-direction: column;
 }
 
-/* ===== Floating WhatsApp Button ===== */
+.kontakt input,
+.kontakt textarea {
+  margin: 10px 0;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+
+.kontakt textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.kontakt input:focus,
+.kontakt textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(0, 145, 172, 0.2);
+  outline: none;
+}
+
+.form-feedback {
+  margin-top: 10px;
+  color: #146c2e;
+}
+
+/* ===== FLOATING WHATSAPP BUTTON ===== */
 .whatsapp-float {
   position: fixed;
-  bottom: 20px;
   right: 20px;
-  background: #32D951; /* neues Grün */
-  color: white;
-  padding: 12px 18px;
-  border-radius: 50px;
-  font-weight: bold;
-  text-decoration: none;
+  bottom: 20px;
+  z-index: 10000;
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  padding: 12px 18px;
+  border-radius: 50px;
+  background: #32d951;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
-  z-index: 10000;
 }
 
 .whatsapp-float:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .whatsapp-float img {
@@ -380,287 +505,101 @@ footer a {
   height: 24px;
 }
 
-/* ===== FINAL SECTION STYLING FIX ===== */
-
-.ba-section {
-  background: #8DE2F4 !important;
+/* ===== TEXTSEITEN ===== */
+.text-page {
+  width: calc(100% - 40px);
+  max-width: 800px;
+  margin: 50px auto 60px;
+  padding: 30px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  text-align: left;
 }
 
-.preisrechner {
-  background: #8DE2F4 !important;
+.text-page h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
 }
 
-.kontakt {
-  background: #8DE2F4 !important;
-}
-
-/* Mehr Abstand */
-.ba-section,
-.preisrechner,
-.kontakt {
-  padding: 100px 20px !important;
-  position: relative;
-}
-
-/* Sichtbare Wellen */
-.ba-section::after {
-  content: "";
-  position: absolute;
-  bottom: -40px;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  background: #8DE2F4;
-  border-bottom-left-radius: 100% 40px;
-  border-bottom-right-radius: 100% 40px;
-}
-
-.preisrechner::after {
-  content: "";
-  position: absolute;
-  bottom: -40px;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  background: #8DE2F4;
-  border-bottom-left-radius: 100% 40px;
-  border-bottom-right-radius: 100% 40px;
-}
-
-/* ===== GLOBAL FONT ===== */
-body {
-  font-family: 'Poppins', sans-serif;
-}
-
-/* ===== LEISTUNGEN BOXEN ===== */
-.card {
-  background: #0091AC !important;
-  color: white !important;
-  padding: 25px;
-  border-radius: 10px;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  opacity: 0.9;
-}
-
-/* ===== BUTTONS (Hero + Kontakt) ===== */
-.btn,
-button,
-#cfSubmit {
-  background: #0091AC !important;
-  color: white !important;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 25px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn:hover,
-button:hover,
-#cfSubmit:hover {
-  background: #007a91 !important;
-}
-
-/* ===== HEADER / HERO ===== */
-
-/* Overlay ggf. anpassen */
-.overlay {
-  background: rgba(0,0,0,0.4);
+.text-page p {
+  margin-bottom: 15px;
+  line-height: 1.7;
 }
 
 /* ===== FOOTER ===== */
 footer {
-  background: #191919 !important;
+  padding: 30px;
+  background: var(--color-dark);
   color: white;
+  text-align: center;
 }
 
-/* Footer Links weiß */
 footer a {
-  color: white !important;
+  margin: 0 10px;
+  color: white;
   text-decoration: none;
 }
 
-footer a:hover {
+footer a:hover,
+footer a:focus-visible {
   text-decoration: underline;
 }
 
-/* ===== NAVBAR (optional angleichen) ===== */
-.topbar {
-  background: #191919 !important;
-}
+/* ===== MOBILE ===== */
+@media (max-width: 640px) {
+  body {
+    padding-top: 110px;
+  }
 
-/* Links in Navbar */
-.topbar a {
-  color: white;
-}
+  .topbar .container {
+    min-height: 110px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
 
-h1, h2, h3 {
-  font-weight: 600;
-}
+  .topbar nav {
+    gap: 12px;
+    font-size: 14px;
+  }
 
-/* ===== RANGE SLIDER STYLE ===== */
-input[type="range"] {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 6px;
-  background: #ddd;
-  border-radius: 5px;
-  outline: none;
-}
+  .hero {
+    min-height: 500px;
+  }
 
-/* Track (Chrome) */
-input[type="range"]::-webkit-slider-runnable-track {
-  height: 6px;
-  background: #0091AC;
-  border-radius: 5px;
-}
+  .overlay {
+    padding: 28px 20px;
+  }
 
-/* Thumb (der Punkt) */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  background: #0091AC;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-top: -6px;
-}
+  .overlay h1 {
+    font-size: 1.8rem;
+  }
 
-/* Firefox */
-input[type="range"]::-moz-range-track {
-  background: #0091AC;
-}
+  section,
+  .ba-section,
+  .preisrechner,
+  .kontakt {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
 
-input[type="range"]::-moz-range-thumb {
-  background: #0091AC;
-  border: none;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-}
+  .ba-wrap {
+    height: 260px;
+  }
 
-input,
-textarea,
-select,
-button {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-}
+  .whatsapp-float {
+    right: 12px;
+    bottom: 12px;
+    padding: 11px;
+    font-size: 0;
+  }
 
-.kontakt input,
-.kontakt textarea {
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 12px;
-}
-
-.kontakt input:focus,
-.kontakt textarea:focus {
-  outline: none;
-  border-color: #0091AC;
-  box-shadow: 0 0 0 2px rgba(0,145,172,0.2);
-}
-
-/* ===== FAQ FRAGEN + ANTWORTEN ZENTRIERT ===== */
-.faq-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* zentriert horizontal */
-  justify-content: center;
-  text-align: center; /* Text innerhalb zentrieren */
-  padding: 15px 10px; /* optional: Abstand innen */
-}
-
-.faq-question {
-  display: inline-block; /* wichtig, damit max-width wirkt */
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
-}
-
-.faq-answer {
-  display: block; /* block für volle Breite */
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
-  margin-top: 10px;
-  padding: 0 5px; /* optional: etwas Innenabstand */
-}
-
-/* ===== PREISRECHNER SLIDER ===== */
-#flaeche {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 10px; /* Track-Höhe */
-  background: #fff; /* Slider-Hintergrund bleibt weiß */
-  border-radius: 5px;
-  outline: none;
-  position: relative;
-}
-
-/* Linie selbst (grau) mit Pseudo-Element */
-#flaeche::-webkit-slider-runnable-track {
-  height: 10px;
-  background: #ccc; /* graue Linie */
-  border-radius: 5px;
-}
-
-#flaeche::-moz-range-track {
-  height: 10px;
-  background: #ccc; /* Firefox graue Linie */
-  border-radius: 5px;
-}
-
-/* Punkt (Thumb) */
-#flaeche::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  background: #0091AC; /* blauer Punkt */
-  border-radius: 50%;
-  border: 2px solid white;
-  cursor: pointer;
-  margin-top: -5px; /* zentriert auf Track */
-  transition: transform 0.2s;
-}
-
-#flaeche::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  background: #0091AC;
-  border-radius: 50%;
-  border: 2px solid white;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-/* optional Hover-Effekt auf Punkt */
-#flaeche::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-}
-
-#flaeche::-moz-range-thumb:hover {
-  transform: scale(1.2);
-}
-
-/* ===== TOPBAR HEIGHT ===== */
-.topbar {
-  padding: 15px 20px; /* statt vorher 10px */
-}
-
-body {
-  padding-top: 70px; /* damit Inhalt nicht unter Topbar rutscht */
-}
-
-.text-page {
-  max-width: 800px;
-  margin: 120px auto 60px;
-  padding: 30px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  .text-page {
+    width: calc(100% - 24px);
+    margin-top: 24px;
+    padding: 22px;
+  }
 }

@@ -4,166 +4,173 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Martin Reinigungstechnik Groß-Gerau</title>
+  <meta name="description" content="Professionelle Reinigung von Terrassen, Einfahrten und Pflasterflächen im Raum Groß-Gerau.">
   <meta property="og:title" content="Martin Reinigungstechnik">
-  <meta property="og:description" content="Hofeinfahrten und Steinflächen wie neu - vom Profi">
+  <meta property="og:description" content="Hofeinfahrten und Steinflächen wie neu – vom Profi.">
   <link rel="icon" type="image/png" href="assets/icons/m.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <header class="topbar">
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="Zur Startseite">
+        <img src="assets/icons/Reinigungstechnik-logo.png" alt="Martin Reinigungstechnik">
+      </a>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="container">
-    <div class="logo">
-      <img src="assets/icons/Reinigungstechnik-logo.png">
+      <nav aria-label="Hauptnavigation">
+        <a href="index.html">Home</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
     </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="index.html#leistungen">Leistungen</a>
-      <a href="index.html#kontakt">Kontakt</a>
-    </nav>
-  </div>
-</div>
+  </header>
 
-<header class="hero">
-  <div class="overlay">
-    <h1>Martin Reinigungstechnik</h1>
-    <p>Bringen Sie Ihr Grundstück zum Strahlen! Pünktlich zum Sommerstart machen wir alles wie neu.</p>
-    <a href="#kontakt" class="btn">Jetzt Anfrage senden</a>
-  </div>
-</header>
+  <main>
+    <section class="hero">
+      <div class="overlay">
+        <h1>Martin Reinigungstechnik</h1>
+        <p>Bringen Sie Ihr Grundstück zum Strahlen! Pünktlich zum Sommerstart machen wir alles wie neu.</p>
+        <a href="#kontakt" class="btn">Jetzt Anfrage senden</a>
+      </div>
+    </section>
 
-<section class="leistungen" id="leistungen">
-  <h2>Unsere Leistungen</h2>
-  <div class="grid">
-    <div class="card">Terrassenreinigung </div>
-    <div class="card">Einfahrten & Pflaster</div>
-    <div class="card">Fugen & Versiegelung</div>
-    <div class="card">Öl-, Rost- & Graffitientfernung</div>
-  </div>
-</section>
+    <section class="leistungen" id="leistungen">
+      <h2>Unsere Leistungen</h2>
+      <div class="grid">
+        <div class="card">Terrassenreinigung</div>
+        <div class="card">Einfahrten &amp; Pflaster</div>
+        <div class="card">Fugen &amp; Versiegelung</div>
+        <div class="card">Öl-, Rost- &amp; Graffitientfernung</div>
+      </div>
+    </section>
 
-<!-- SLIDER -->
-<section class="ba-section">
-  <h2>Vorher / Nachher</h2>
+    <section class="ba-section" aria-labelledby="ba-heading">
+      <h2 id="ba-heading">Vorher / Nachher</h2>
 
-  <div class="ba-container">
+      <div class="ba-container">
+        <div class="ba-wrap">
+          <div class="ba-before" style="background-image: url('assets/images/nachher1.png');"></div>
+          <div class="ba-after" style="background-image: url('assets/images/vorher1.png');"></div>
+          <button class="ba-handle" type="button" aria-label="Vorher-Nachher-Vergleich verschieben"></button>
+        </div>
 
-    <div class="ba-wrap">
-      <div class="ba-before" style="background-image:url('assets/images/nachher1.png');"></div>
-      <div class="ba-after" style="background-image:url('assets/images/vorher1.png');"></div>
-      <div class="ba-handle"></div>
-    </div>
+        <div class="ba-wrap">
+          <div class="ba-before" style="background-image: url('assets/images/nachher2.png');"></div>
+          <div class="ba-after" style="background-image: url('assets/images/vorher2.png');"></div>
+          <button class="ba-handle" type="button" aria-label="Vorher-Nachher-Vergleich verschieben"></button>
+        </div>
 
-    <div class="ba-wrap">
-      <div class="ba-before" style="background-image:url('assets/images/nachher2.png');"></div>
-      <div class="ba-after" style="background-image:url('assets/images/vorher2.png');"></div>
-      <div class="ba-handle"></div>
-    </div>
+        <div class="ba-wrap">
+          <div class="ba-before" style="background-image: url('assets/images/nachher3.png');"></div>
+          <div class="ba-after" style="background-image: url('assets/images/vorher3.png');"></div>
+          <button class="ba-handle" type="button" aria-label="Vorher-Nachher-Vergleich verschieben"></button>
+        </div>
+      </div>
+    </section>
 
-    <div class="ba-wrap">
-      <div class="ba-before" style="background-image:url('assets/images/nachher3.png');"></div>
-      <div class="ba-after" style="background-image:url('assets/images/vorher3.png');"></div>
-      <div class="ba-handle"></div>
-    </div>
+    <section class="vorteile">
+      <h2>Warum wir?</h2>
+      <ul>
+        <li>Kostenlose Probefläche</li>
+        <li>Schnelle Termine</li>
+        <li>Faire Preise</li>
+        <li>Top Ergebnisse</li>
+      </ul>
+    </section>
 
-  </div>
-</section>
+    <section class="preisrechner" aria-labelledby="preisrechner-heading">
+      <div class="container">
+        <h2 id="preisrechner-heading">Preisrechner</h2>
 
-<section class="vorteile">
-  <h2>Warum wir?</h2>
-  <ul>
-    <li>Kostenlose Probefläche</li>
-    <li>Schnelle Termine</li>
-    <li>Faire Preise</li>
-    <li>Top Ergebnisse</li>
-  </ul>
-</section>
+        <div class="input-group">
+          <label for="reinigungsart">Reinigungsart wählen:</label>
+          <select id="reinigungsart">
+            <option value="terrasse">Terrassenreinigung – 10 €/m²</option>
+            <option value="einfahrt">Einfahrten &amp; Pflaster – 12 €/m²</option>
+            <option value="fugen">Fugen &amp; Versiegelung – 15 €/m²</option>
+          </select>
+        </div>
 
-  <!-- Preisrechner -->
-<section class="preisrechner">
-  <div class="container">
-    <h2>Preisrechner</h2>
-  
-    <div class="input-group">
-      <label for="reinigungsart">Reinigungsart wählen:</label>
-      <select id="reinigungsart">
-        <option value="terrasse">Terrassenreinigung – 10€/m²</option>
-        <option value="einfahrt">Einfahrten & Pflaster – 12€/m²</option>
-        <option value="fugen">Fugen & Versiegelung – 15€/m²</option>
-      </select>
-    </div>
+        <div class="input-group">
+          <label for="flaeche">Fläche: <span id="flaecheValue">50</span> m²</label>
+          <input type="range" id="flaeche" min="10" max="200" value="50">
+        </div>
 
-  <div class="input-group">
-    <label for="flaeche">Fläche in m²: <span id="flaecheValue">50</span> m²</label>
-    <input type="range" id="flaeche" min="10" max="200" value="50">
-  </div>
+        <div class="preis" aria-live="polite">
+          <h3>Preis: <span id="preisAnzeigen">–</span> €</h3>
+        </div>
+      </div>
+    </section>
 
-  <div class="preis">
-    <h3>Preis: <span id="preisAnzeigen">–</span> €</h3>
-  </div>
-</section>
+    <section class="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 id="faq-heading">Häufig gestellte Fragen</h2>
 
-<!-- FAQ -->
-<section class="faq">
-  <div class="container">
-  <h2>Häufig gestellte Fragen</h2>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1">
+            Wie lange dauert eine Terrassenreinigung?
+          </button>
+          <div class="faq-answer" id="faq-answer-1">
+            <p>Die Dauer hängt von der Fläche ab, aber in der Regel dauert es 2–4 Stunden für 50 m².</p>
+          </div>
+        </div>
 
-  <div class="faq-item">
-    <button class="faq-question">Wie lange dauert eine Terrassenreinigung?</button>
-    <div class="faq-answer">
-      <p>Die Dauer hängt von der Fläche ab, aber in der Regel dauert es 2–4 Stunden für 50 m².</p>
-    </div>
-  </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2">
+            Sind die Reinigungsmittel umweltfreundlich?
+          </button>
+          <div class="faq-answer" id="faq-answer-2">
+            <p>Ja, wir verwenden ausschließlich biologisch abbaubare Mittel, die Ihre Pflanzen und Haustiere nicht gefährden.</p>
+          </div>
+        </div>
 
-  <div class="faq-item">
-    <button class="faq-question">Sind die Reinigungsmittel umweltfreundlich?</button>
-    <div class="faq-answer">
-      <p>Ja, wir verwenden ausschließlich biologisch abbaubare Mittel, die Ihre Pflanzen und Haustiere nicht gefährden.</p>
-    </div>
-  </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3">
+            Muss ich etwas vorbereiten?
+          </button>
+          <div class="faq-answer" id="faq-answer-3">
+            <p>Wir bitten Sie, Möbel von der zu reinigenden Fläche zu entfernen, damit wir effizient arbeiten können.</p>
+          </div>
+        </div>
 
-  <div class="faq-item">
-    <button class="faq-question">Muss ich etwas vorbereiten?</button>
-    <div class="faq-answer">
-      <p>Wir bitten Sie, Möbel von der zu reinigenden Fläche zu entfernen, damit wir effizient arbeiten können.</p>
-    </div>
-  </div>
+        <div class="faq-item">
+          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-4">
+            Wie bezahle ich?
+          </button>
+          <div class="faq-answer" id="faq-answer-4">
+            <p>Sie können bar, per Überweisung oder über PayPal bezahlen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="faq-item">
-    <button class="faq-question">Wie bezahle ich?</button>
-    <div class="faq-answer">
-      <p>Sie können bar, per Überweisung oder über PayPal bezahlen.</p>
-    </div>
-  </div>
-</section>
-  
-<!-- NEUES ANFRAGEPORTAL -->
-<section id="kontakt" class="kontakt">
-  <h2>Kontakt</h2>
-  <form id="contactForm">
-    <input type="text" placeholder="Name" id="cfName" required>
-    <input type="email" placeholder="E-Mail" id="cfEmail" required>
-    <textarea placeholder="Nachricht" id="cfMessage" required></textarea>
-    <button type="button" id="cfSubmit">Absenden</button>
-  </form>
-  <div id="cfFeedback" style="display:none; margin-top:10px; color:green;">Danke! Ihre Nachricht wurde gesendet.</div>
-</section>
+    <section id="kontakt" class="kontakt">
+      <h2>Kontakt</h2>
+      <form id="contactForm">
+        <input type="text" placeholder="Name" aria-label="Name" id="cfName" autocomplete="name" required>
+        <input type="email" placeholder="E-Mail" aria-label="E-Mail" id="cfEmail" autocomplete="email" required>
+        <textarea placeholder="Nachricht" aria-label="Nachricht" id="cfMessage" required></textarea>
 
-<footer>
-  <p>© 2026 Martin Reinigungstechnik</p>
-  <a href="impressum.html">Impressum</a>
-  <a href="datenschutz.html">Datenschutz</a>
-</footer>
+        <button type="submit" id="cfSubmit">Absenden</button>
+      </form>
+      <p id="cfFeedback" class="form-feedback" hidden>Danke! Ihre Nachricht wurde gesendet.</p>
+    </section>
+  </main>
 
-<script src="js/script.js"></script>
+  <footer>
+    <p>© 2026 Martin Reinigungstechnik</p>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </footer>
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/015567298306" target="_blank" class="whatsapp-float">
-  <img src="assets/icons/whatsapp logo.png" alt="WhatsApp" />
-  WhatsApp
-</a>
-  
+  <a href="https://wa.me/015567298306" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+    <img src="assets/icons/whatsapp logo.png" alt="">
+    WhatsApp
+  </a>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
