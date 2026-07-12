@@ -4,173 +4,455 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Martin Reinigungstechnik Groß-Gerau</title>
-  <meta name="description" content="Professionelle Reinigung von Terrassen, Einfahrten und Pflasterflächen im Raum Groß-Gerau.">
+  <meta name="description" content="Professionelle Stein-, Pflaster- und Außenreinigung für Privat und Gewerbe in Trebur und Umgebung.">
   <meta property="og:title" content="Martin Reinigungstechnik">
-  <meta property="og:description" content="Hofeinfahrten und Steinflächen wie neu – vom Profi.">
-  <link rel="icon" type="image/png" href="assets/icons/m.png">
+  <meta property="og:description" content="Professionelle Reinigung für Privat & Gewerbe.">
+  <link rel="icon" type="image/png" href="/assets/icons/m.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-  <header class="topbar">
-    <div class="container">
-      <a class="logo" href="index.html" aria-label="Zur Startseite">
-        <img src="assets/icons/Reinigungstechnik-logo.png" alt="Martin Reinigungstechnik">
-      </a>
+<body class="home-page">
 
-      <nav aria-label="Hauptnavigation">
-        <a href="index.html">Home</a>
+<div class="site-shell">
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <a href="/" class="logo" aria-label="Martin Reinigungstechnik Startseite">
+        <img src="/assets/icons/Reinigungstechnik-logo.svg" alt="Martin Reinigungstechnik Logo">
+      </a>
+      <nav class="nav">
         <a href="#leistungen">Leistungen</a>
+        <a href="#bewertungen">Bewertungen</a>
+        <a href="/preisrechner/index.html">Preisrechner</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
+    </div>
+  </div>
+
+  <header class="hero" id="home">
+    <div class="hero__bg"></div>
+    <div class="container hero__content">
+      <div class="hero__copy">
+        <span class="eyebrow">Martin Reinigungstechnik</span>
+        <h1>Professionelle Reinigung <span>für Privat &amp; Gewerbe</span></h1>
+        <p>
+          Wir entfernen Schmutz, Algen, Moos und Ablagerungen gründlich und materialschonend –
+          für saubere Flächen, einen starken ersten Eindruck und langfristigen Werterhalt.
+        </p>
+        <div class="hero__actions">
+          <a href="#kontakt" class="btn btn--primary">Kostenlos anfragen</a>
+          <a href="/preisrechner/index.html" class="btn btn--secondary">Preis berechnen</a>
+        </div>
+        <ul class="hero__facts">
+          <li>Kostenlose Probefläche</li>
+          <li>Schnelle Termine</li>
+          <li>Faire Preise</li>
+          <li>Top Ergebnisse</li>
+        </ul>
+      </div>
+
+      <div class="hero__panel surface-card">
+        <span class="surface-card__eyebrow">Leistungsschwerpunkte</span>
+        <div class="surface-card__list">
+          <div class="surface-item">
+            <strong>Pflasterreinigung</strong>
+            <span>Hofeinfahrten, Wege, Terrassen und Plätze</span>
+          </div>
+          <div class="surface-item">
+            <strong>Gebäudereinigung</strong>
+            <span>Fassaden, Mauern, Dächer und Außenbereiche</span>
+          </div>
+          <div class="surface-item">
+            <strong>Parkplatzreinigung</strong>
+            <span>Tiefgaragen, Parkhäuser und Gewerbeflächen</span>
+          </div>
+          <div class="surface-item">
+            <strong>Umweltfreundlich</strong>
+            <span>Schonende Reinigung ohne unnötige Zusätze</span>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="overlay">
-        <h1>Martin Reinigungstechnik</h1>
-        <p>Bringen Sie Ihr Grundstück zum Strahlen! Pünktlich zum Sommerstart machen wir alles wie neu.</p>
-        <a href="#kontakt" class="btn">Jetzt Anfrage senden</a>
-      </div>
-    </section>
-
-    <section class="leistungen" id="leistungen">
-      <h2>Unsere Leistungen</h2>
-      <div class="grid">
-        <div class="card">Terrassenreinigung</div>
-        <div class="card">Einfahrten &amp; Pflaster</div>
-        <div class="card">Fugen &amp; Versiegelung</div>
-        <div class="card">Öl-, Rost- &amp; Graffitientfernung</div>
-      </div>
-    </section>
-
-    <section class="ba-section" aria-labelledby="ba-heading">
-      <h2 id="ba-heading">Vorher / Nachher</h2>
-
-      <div class="ba-container">
-        <div class="ba-wrap">
-          <div class="ba-before" style="background-image: url('assets/images/nachher1.png');"></div>
-          <div class="ba-after" style="background-image: url('assets/images/vorher1.png');"></div>
-          <button class="ba-handle" type="button" aria-label="Vorher-Nachher-Vergleich verschieben"></button>
-        </div>
-
-        <div class="ba-wrap">
-          <div class="ba-before" style="background-image: url('assets/images/nachher2.png');"></div>
-          <div class="ba-after" style="background-image: url('assets/images/vorher2.png');"></div>
-          <button class="ba-handle" type="button" aria-label="Vorher-Nachher-Vergleich verschieben"></button>
-        </div>
-
-        <div class="ba-wrap">
-          <div class="ba-before" style="background-image: url('assets/images/nachher3.png');"></div>
-          <div class="ba-after" style="background-image: url('assets/images/vorher3.png');"></div>
-          <button class="ba-handle" type="button" aria-label="Vorher-Nachher-Vergleich verschieben"></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="vorteile">
-      <h2>Warum wir?</h2>
-      <ul>
-        <li>Kostenlose Probefläche</li>
-        <li>Schnelle Termine</li>
-        <li>Faire Preise</li>
-        <li>Top Ergebnisse</li>
-      </ul>
-    </section>
-
-    <section class="preisrechner" aria-labelledby="preisrechner-heading">
+    <section class="section section--dark" id="leistungen">
       <div class="container">
-        <h2 id="preisrechner-heading">Preisrechner</h2>
-
-        <div class="input-group">
-          <label for="reinigungsart">Reinigungsart wählen:</label>
-          <select id="reinigungsart">
-            <option value="terrasse">Terrassenreinigung – 10 €/m²</option>
-            <option value="einfahrt">Einfahrten &amp; Pflaster – 12 €/m²</option>
-            <option value="fugen">Fugen &amp; Versiegelung – 15 €/m²</option>
-          </select>
+        <div class="section-heading">
+          <span class="eyebrow">Unsere Leistungen</span>
+          <h2>Saubere Lösungen für <span>Außenflächen jeder Art</span></h2>
+          <p>Vom Privathaus bis zur Gewerbefläche – wir reinigen gründlich, professionell und zuverlässig.</p>
         </div>
 
-        <div class="input-group">
-          <label for="flaeche">Fläche: <span id="flaecheValue">50</span> m²</label>
-          <input type="range" id="flaeche" min="10" max="200" value="50">
-        </div>
-
-        <div class="preis" aria-live="polite">
-          <h3>Preis: <span id="preisAnzeigen">–</span> €</h3>
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-card__icon">01</div>
+            <h3>Pflasterreinigung</h3>
+            <p>Hofeinfahrten, Wege, Terrassen und Pflasterflächen werden tiefenwirksam gereinigt und optisch aufgewertet.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">02</div>
+            <h3>Gebäudereinigung</h3>
+            <p>Für Fassaden, Mauern und Außenbereiche – sauber, materialschonend und auf den Untergrund abgestimmt.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">03</div>
+            <h3>Parkplatzreinigung</h3>
+            <p>Ideal für Tiefgaragen, Parkhäuser und stark beanspruchte Flächen im gewerblichen Einsatz.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon">04</div>
+            <h3>Fugen &amp; Nachsandung</h3>
+            <p>Auf Wunsch mit passender Materialkalkulation für eine saubere, langlebige und gepflegte Gesamtfläche.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="faq" aria-labelledby="faq-heading">
+    <section class="section section--gradient gallery-section" id="arbeiten">
       <div class="container">
-        <h2 id="faq-heading">Häufig gestellte Fragen</h2>
-
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1">
-            Wie lange dauert eine Terrassenreinigung?
-          </button>
-          <div class="faq-answer" id="faq-answer-1">
-            <p>Die Dauer hängt von der Fläche ab, aber in der Regel dauert es 2–4 Stunden für 50 m².</p>
-          </div>
+        <div class="section-heading section-heading--left">
+          <span class="eyebrow">Einblicke</span>
+          <h2>Unsere Arbeit <span>in Bildern</span></h2>
+          <p>Reale Flächen und sichtbare Ergebnisse – automatisch und ohne manuelles Durchklicken.</p>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2">
-            Sind die Reinigungsmittel umweltfreundlich?
-          </button>
-          <div class="faq-answer" id="faq-answer-2">
-            <p>Ja, wir verwenden ausschließlich biologisch abbaubare Mittel, die Ihre Pflanzen und Haustiere nicht gefährden.</p>
-          </div>
-        </div>
+        <div class="gallery-marquee" aria-label="Bildergalerie unserer Reinigungsarbeiten">
+          <div class="gallery-track">
+            <figure class="gallery-card">
+              <img
+                src="assets/images/gallery/galerie-01.webp"
+                alt="Professionell gereinigte Außenfläche"
+                loading="lazy"
+              >
+            </figure>
 
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3">
-            Muss ich etwas vorbereiten?
-          </button>
-          <div class="faq-answer" id="faq-answer-3">
-            <p>Wir bitten Sie, Möbel von der zu reinigenden Fläche zu entfernen, damit wir effizient arbeiten können.</p>
-          </div>
-        </div>
+            <figure class="gallery-card">
+              <img
+                src="assets/images/gallery/galerie-02.webp"
+                alt="Gereinigte Pflasterfläche"
+                loading="lazy"
+              >
+            </figure>
 
-        <div class="faq-item">
-          <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-4">
-            Wie bezahle ich?
-          </button>
-          <div class="faq-answer" id="faq-answer-4">
-            <p>Sie können bar, per Überweisung oder über PayPal bezahlen.</p>
+            <figure class="gallery-card">
+              <img
+                src="assets/images/gallery/galerie-03.webp"
+                alt="Reinigungsarbeit an einer Einfahrt"
+                loading="lazy"
+              >
+            </figure>
+
+            <figure class="gallery-card">
+              <img
+                src="assets/images/gallery/galerie-04.webp"
+                alt="Saubere Terrasse nach der Reinigung"
+                loading="lazy"
+              >
+            </figure>
+
+            <figure class="gallery-card">
+              <img
+                src="assets/images/gallery/galerie-05.webp"
+                alt="Professionell bearbeitete Steinfläche"
+                loading="lazy"
+              >
+            </figure>
+
+            <figure class="gallery-card">
+              <img
+                src="assets/images/gallery/galerie-06.webp"
+                alt="Gepflegte Außenfläche"
+                loading="lazy"
+              >
+            </figure>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="kontakt" class="kontakt">
-      <h2>Kontakt</h2>
-      <form id="contactForm">
-        <input type="text" placeholder="Name" aria-label="Name" id="cfName" autocomplete="name" required>
-        <input type="email" placeholder="E-Mail" aria-label="E-Mail" id="cfEmail" autocomplete="email" required>
-        <textarea placeholder="Nachricht" aria-label="Nachricht" id="cfMessage" required></textarea>
+    <!--
+      Der bisherige Vorher-/Nachher-Slider bleibt im Code erhalten, ist aber deaktiviert.
+      Zum Reaktivieren den folgenden Template-Inhalt wieder an die gewünschte Stelle kopieren.
+    -->
+    <template id="before-after-slider-template">
+    <section class="section section--gradient" id="vorher-nachher">
+      <div class="container">
+        <div class="section-heading section-heading--left">
+          <span class="eyebrow">Vorher / Nachher</span>
+          <h2>Der Unterschied ist <span>sofort sichtbar</span></h2>
+          <p>Ziehe den Regler nach links oder rechts und vergleiche reale Ergebnisse direkt auf der Fläche.</p>
+        </div>
 
-        <button type="submit" id="cfSubmit">Absenden</button>
-      </form>
-      <p id="cfFeedback" class="form-feedback" hidden>Danke! Ihre Nachricht wurde gesendet.</p>
+        <div class="ba-container">
+          <div class="ba-card">
+            <div class="ba-wrap" aria-label="Vorher Nachher Vergleich 1">
+              <div class="ba-before" style="background-image:url('assets/images/vorher1.png');"></div>
+              <div class="ba-after" style="background-image:url('assets/images/nachher1.png');"></div>
+              <div class="ba-handle"></div>
+              <span class="ba-label ba-label--left">Vorher</span>
+              <span class="ba-label ba-label--right">Nachher</span>
+            </div>
+          </div>
+
+          <div class="ba-card">
+            <div class="ba-wrap" aria-label="Vorher Nachher Vergleich 2">
+              <div class="ba-before" style="background-image:url('assets/images/vorher2.png');"></div>
+              <div class="ba-after" style="background-image:url('assets/images/nachher2.png');"></div>
+              <div class="ba-handle"></div>
+              <span class="ba-label ba-label--left">Vorher</span>
+              <span class="ba-label ba-label--right">Nachher</span>
+            </div>
+          </div>
+
+          <div class="ba-card">
+            <div class="ba-wrap" aria-label="Vorher Nachher Vergleich 3">
+              <div class="ba-before" style="background-image:url('assets/images/vorher3.png');"></div>
+              <div class="ba-after" style="background-image:url('assets/images/nachher3.png');"></div>
+              <div class="ba-handle"></div>
+              <span class="ba-label ba-label--left">Vorher</span>
+              <span class="ba-label ba-label--right">Nachher</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </template>
+
+    <section class="section section--dark why-us" id="warum-wir">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Warum wir</span>
+          <h2>Zuverlässig, sauber und <span>ohne unnötigen Schnickschnack</span></h2>
+          <p>Klare Kommunikation, sichtbare Ergebnisse und ein professioneller Auftritt – genau darauf legen wir Wert.</p>
+        </div>
+
+        <div class="why-grid">
+          <article class="why-card">
+            <h3>Kostenlose Probefläche</h3>
+            <p>Damit du das Ergebnis und die Reinigungswirkung direkt vor Ort beurteilen kannst.</p>
+          </article>
+          <article class="why-card">
+            <h3>Schnelle Terminvergabe</h3>
+            <p>Kurze Wege, saubere Planung und eine zügige Umsetzung ohne langes Warten.</p>
+          </article>
+          <article class="why-card">
+            <h3>Faire Preisstruktur</h3>
+            <p>Transparente Einschätzung statt unklarer Pauschalen – auf Wunsch direkt über den Preisrechner.</p>
+          </article>
+          <article class="why-card">
+            <h3>Professioneller Eindruck</h3>
+            <p>Ob privat oder gewerblich: Gepflegte Flächen sorgen für einen starken ersten Eindruck.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark reviews" id="bewertungen">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Kundenstimmen</span>
+          <h2>Wir hinterlassen nicht nur saubere Flächen – <span>sondern bleibenden Eindruck</span></h2>
+          <p>So bewerten Kunden unsere Arbeit.</p>
+        </div>
+
+        <div class="reviews-marquee">
+          <div class="reviews-track">
+            <article class="review-card">
+              <div class="review-card__brand"><span class="google-wordmark" aria-hidden="true">Google</span><span class="review-stars">★★★★★</span></div>
+              <p>„Ich entdeckte die Firma Pflasterlux. Vom ersten Kontakt bis zur Ausführung hochmotiviert, freundlich und professionell. Das Ergebnis ist wirklich beeindruckend.“</p>
+              <div class="review-card__footer"><strong>Uwe Barck</strong><span>Google Rezension</span></div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card__brand"><span class="google-wordmark" aria-hidden="true">Google</span><span class="review-stars">★★★★★</span></div>
+              <p>„Richtig gute Leistung und ein tolles Team. Von der Auftragsklärung bis zur Durchführung super zufrieden. Das wird bestimmt nicht der letzte Auftrag gewesen sein.“</p>
+              <div class="review-card__footer"><strong>Christian Appel</strong><span>Google Rezension</span></div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card__brand"><span class="google-wordmark" aria-hidden="true">Google</span><span class="review-stars">★★★★★</span></div>
+              <p>„Super freundlicher Kontakt, tolle Beratung, zuverlässig und klasse Arbeit. Ganz klare Weiterempfehlung – ich freue mich schon auf den Sommer auf der ‚alten neuen‘ Terrasse.“</p>
+              <div class="review-card__footer"><strong>Ch St</strong><span>Google Rezension</span></div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card__brand"><span class="google-wordmark" aria-hidden="true">Google</span><span class="review-stars">★★★★★</span></div>
+              <p>„Kompetent, pünktlich und sauber gearbeitet. Gerade bei unserer Einfahrt hat man den Unterschied sofort gesehen. Sehr angenehme Zusammenarbeit.“</p>
+              <div class="review-card__footer"><strong>Lokaler Kunde</strong><span>Google Rezension</span></div>
+            </article>
+
+            <article class="review-card" aria-hidden="true">
+              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-stars">★★★★★</span></div>
+              <p>„Ich entdeckte die Firma Pflasterlux. Vom ersten Kontakt bis zur Ausführung hochmotiviert, freundlich und professionell. Das Ergebnis ist wirklich beeindruckend.“</p>
+              <div class="review-card__footer"><strong>Uwe Barck</strong><span>Google Rezension</span></div>
+            </article>
+
+            <article class="review-card" aria-hidden="true">
+              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-stars">★★★★★</span></div>
+              <p>„Richtig gute Leistung und ein tolles Team. Von der Auftragsklärung bis zur Durchführung super zufrieden. Das wird bestimmt nicht der letzte Auftrag gewesen sein.“</p>
+              <div class="review-card__footer"><strong>Christian Appel</strong><span>Google Rezension</span></div>
+            </article>
+
+            <article class="review-card" aria-hidden="true">
+              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-stars">★★★★★</span></div>
+              <p>„Super freundlicher Kontakt, tolle Beratung, zuverlässig und klasse Arbeit. Ganz klare Weiterempfehlung – ich freue mich schon auf den Sommer auf der ‚alten neuen‘ Terrasse.“</p>
+              <div class="review-card__footer"><strong>Ch St</strong><span>Google Rezension</span></div>
+            </article>
+
+            <article class="review-card" aria-hidden="true">
+              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-stars">★★★★★</span></div>
+              <p>„Kompetent, pünktlich und sauber gearbeitet. Gerade bei unserer Einfahrt hat man den Unterschied sofort gesehen. Sehr angenehme Zusammenarbeit.“</p>
+              <div class="review-card__footer"><strong>Lokaler Kunde</strong><span>Google Rezension</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--price-cta" id="preisrechner-cta">
+      <div class="container price-cta">
+        <div class="price-cta__copy">
+          <span class="eyebrow">Preisrechner</span>
+          <h2>Preis für deine Steinreinigung <span>in wenigen Klicks berechnen</span></h2>
+          <p>
+            In wenigen Minuten zur realistischen Kostenschätzung für Terrasse, Einfahrt &amp; Co. –
+            inklusive Materialbedarf für Neuverfugung. Kostenlos und unverbindlich.
+          </p>
+        </div>
+
+        <div class="price-cta__features">
+          <article class="mini-feature">
+            <h3>Sofort wissen, was es kostet</h3>
+            <p>Maße eingeben, Fläche und Zustand auswählen – du bekommst direkt eine transparente Kostenübersicht.</p>
+          </article>
+          <article class="mini-feature">
+            <h3>Materialbedarf berechnen</h3>
+            <p>Wir berechnen die benötigte Materialmenge direkt mit – damit dein Angebot realistisch bleibt.</p>
+          </article>
+        </div>
+
+        <div class="price-cta__action">
+          <a href="/preisrechner/index.html" class="btn btn--primary btn--large">Zum Preisrechner</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark faq" id="faq">
+      <div class="container faq__container">
+        <div class="section-heading section-heading--left">
+          <span class="eyebrow">FAQ</span>
+          <h2>Häufige Fragen <span>kurz beantwortet</span></h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" type="button">Wie lange dauert eine Terrassen- oder Pflasterreinigung?</button>
+            <div class="faq-answer">
+              <p>Das hängt von Fläche, Verschmutzung und Zugänglichkeit ab. Kleinere Flächen sind oft in wenigen Stunden erledigt, größere Objekte planen wir sauber im Voraus ein.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">Verwendet ihr umweltfreundliche Reinigungsmittel?</button>
+            <div class="faq-answer">
+              <p>Ja. Wir arbeiten material- und umweltschonend und setzen nur dort Reinigungsmittel ein, wo sie wirklich sinnvoll sind.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">Kann ich Bilder direkt mitsenden?</button>
+            <div class="faq-answer">
+              <p>Ja, über das Kontaktformular kannst du jetzt Bilder der zu reinigenden Fläche hochladen. Das erleichtert die erste Einschätzung deutlich.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button">Ist der Preisrechner verbindlich?</button>
+            <div class="faq-answer">
+              <p>Nein. Der Preisrechner dient als erste Orientierung. Das finale Angebot hängt immer von Fläche, Zustand und individuellen Anforderungen ab.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--contact" id="kontakt">
+      <div class="container contact-layout">
+        <div class="contact-copy">
+          <span class="eyebrow">Kontakt</span>
+          <h2>Jetzt kostenlos <span>anfragen</span></h2>
+          <p>Schick uns deine Anfrage direkt über das Formular. Wenn du möchtest, kannst du Bilder der Fläche direkt mitsenden.</p>
+          <ul class="contact-points">
+            <li>Schnelle Rückmeldung</li>
+            <li>Unverbindliche Ersteinschätzung</li>
+            <li>Bilderupload für bessere Planung</li>
+          </ul>
+        </div>
+
+        <form id="contactForm" class="contact-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="cfName">Name</label>
+              <input type="text" placeholder="Max Mustermann" id="cfName" required>
+            </div>
+            <div class="form-field">
+              <label for="cfEmail">E-Mail</label>
+              <input type="email" placeholder="name@email.de" id="cfEmail" required>
+            </div>
+            <div class="form-field">
+              <label for="cfPhone">Telefon (optional)</label>
+              <input type="tel" placeholder="0155 ..." id="cfPhone">
+            </div>
+            <div class="form-field">
+              <label for="cfSubject">Leistung</label>
+              <select id="cfSubject">
+                <option>Pflasterreinigung</option>
+                <option>Terrassenreinigung</option>
+                <option>Gebäudereinigung</option>
+                <option>Parkplatzreinigung</option>
+                <option>Sonstiges</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label for="cfMessage">Nachricht</label>
+            <textarea placeholder="Beschreibe kurz die Fläche oder dein Anliegen ..." id="cfMessage" required></textarea>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label for="cfFiles">Bilder hochladen (optional)</label>
+            <input type="file" id="cfFiles" accept="image/*" multiple>
+            <small id="cfFilesInfo">Keine Bilder ausgewählt</small>
+          </div>
+
+          <button type="button" id="cfSubmit" class="btn btn--primary">Anfrage absenden</button>
+          <div id="cfFeedback" class="form-feedback" hidden>Danke! Deine Nachricht wurde gespeichert. Der Versand kann später mit einem Backend oder Dienst verbunden werden.</div>
+        </form>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>© 2026 Martin Reinigungstechnik</p>
-    <a href="impressum.html">Impressum</a>
-    <a href="datenschutz.html">Datenschutz</a>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <strong>Martin Reinigungstechnik</strong>
+        <p class="footer__copyright">© 2026 Martin Reinigungstechnik® All rights reserved.</p>
+        <p class="footer__tagline">Professionelle Reinigung für Privat &amp; Gewerbe.</p>
+      </div>
+      <div class="footer__links">
+        <a href="/preisrechner/index.html">Preisrechner</a>
+        <a href="/impressum/index.html">Impressum</a>
+        <a href="/datenschutz/index.html">Datenschutz</a>
+      </div>
+    </div>
   </footer>
+</div>
 
-  <a href="https://wa.me/015567298306" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
-    <img src="assets/icons/whatsapp logo.png" alt="">
-    WhatsApp
-  </a>
+<a href="https://wa.me/4915567298306" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Per WhatsApp kontaktieren">
+  <img src="/assets/icons/whatsapp logo.png" alt="WhatsApp">
+  <span>WhatsApp</span>
+</a>
 
-  <script src="js/script.js"></script>
+<script src="/js/script.js"></script>
 </body>
 </html>

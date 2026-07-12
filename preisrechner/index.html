@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preisrechner – Martin Reinigungstechnik</title>
+  <meta name="description" content="Erste, unverbindliche Preisorientierung für Stein- und Pflasterreinigung.">
+  <link rel="icon" type="image/png" href="/assets/icons/m.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="site-shell">
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <a href="/" class="logo" aria-label="Martin Reinigungstechnik Startseite">
+        <img src="/assets/icons/Reinigungstechnik-logo.svg" alt="Martin Reinigungstechnik Logo">
+      </a>
+      <nav class="nav">
+        <a href="/#leistungen">Leistungen</a>
+        <a href="/#bewertungen">Bewertungen</a>
+        <a href="/preisrechner/index.html">Preisrechner</a>
+        <a href="/#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero__content">
+        <div class="page-hero__copy">
+          <span class="eyebrow">Preisrechner</span>
+          <h1>Preis für deine Steinreinigung <span>realistisch einschätzen</span></h1>
+          <p>
+            Diese Berechnung dient als unverbindliche Orientierung. Fläche, Verschmutzung und gewünschte Zusatzleistungen
+            werden direkt berücksichtigt – inklusive optionaler Nachsandung.
+          </p>
+          <a href="#rechner" class="btn btn--primary">Jetzt berechnen</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="rechner">
+      <div class="container calculator-layout">
+        <div class="calculator-panel">
+          <div class="section-heading section-heading--left">
+            <span class="eyebrow">Rechner</span>
+            <h2>In wenigen Klicks zur <span>ersten Kostenschätzung</span></h2>
+          </div>
+
+          <div class="form-grid form-grid--calculator">
+            <div class="form-field">
+              <label for="calcService">Art der Reinigung</label>
+              <select id="calcService">
+                <option value="terrasse">Terrasse / Steinfläche</option>
+                <option value="einfahrt">Einfahrt / Pflaster</option>
+                <option value="parkplatz">Parkplatz / größere Fläche</option>
+                <option value="fassade">Fassade / Mauerwerk</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="calcCondition">Zustand der Fläche</label>
+              <select id="calcCondition">
+                <option value="1">Leicht verschmutzt</option>
+                <option value="1.15">Normal verschmutzt</option>
+                <option value="1.35">Stark verschmutzt</option>
+              </select>
+            </div>
+
+            <div class="form-field form-field--full">
+              <label for="calcArea">Fläche in m²</label>
+              <div class="range-group">
+                <input type="number" id="calcArea" min="10" max="1000" value="50">
+                <input type="range" id="calcAreaRange" min="10" max="1000" value="50">
+              </div>
+            </div>
+
+            <div class="form-field form-field--full checkbox-field">
+              <label class="checkbox-label">
+                <input type="checkbox" id="calcJoints">
+                <span>Neuverfugung / Nachsandung einbeziehen</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <aside class="result-panel">
+          <span class="eyebrow">Ergebnis</span>
+          <h3>Deine Schätzung</h3>
+          <div class="result-line">
+            <span>Grundpreis</span>
+            <strong id="calcBaseOutput">500,00 €</strong>
+          </div>
+          <div class="result-line">
+            <span>Zustandsfaktor</span>
+            <strong id="calcConditionOutput">1,00×</strong>
+          </div>
+          <div class="result-line">
+            <span>Nachsandung</span>
+            <strong id="calcJointOutput">0,00 €</strong>
+          </div>
+          <div class="result-total">
+            <span>Geschätzter Gesamtpreis</span>
+            <strong id="calcTotalOutput">500,00 €</strong>
+          </div>
+          <p id="calcMaterialOutput" class="result-note">Kein zusätzlicher Materialbedarf berechnet.</p>
+          <p class="result-disclaimer">Hinweis: Die Berechnung ist unverbindlich und ersetzt kein individuelles Angebot vor Ort.</p>
+          <a href="/#kontakt" class="btn btn--secondary btn--full">Unverbindliche Anfrage senden</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <strong>Martin Reinigungstechnik</strong>
+        <p class="footer__copyright">© 2026 Martin Reinigungstechnik® All rights reserved.</p>
+        <p class="footer__tagline">Professionelle Reinigung für Privat &amp; Gewerbe.</p>
+      </div>
+      <div class="footer__links">
+        <a href="/">Startseite</a>
+        <a href="/impressum/index.html">Impressum</a>
+        <a href="/datenschutz/index.html">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
