@@ -75,17 +75,14 @@ const initFaq = () => {
 };
 
 const initContactForm = () => {
-  const cfName = document.getElementById('cfName');
-  const cfEmail = document.getElementById('cfEmail');
+  const form = document.getElementById('contactForm');
   const cfMessage = document.getElementById('cfMessage');
-  const cfPhone = document.getElementById('cfPhone');
   const cfSubject = document.getElementById('cfSubject');
   const cfFiles = document.getElementById('cfFiles');
   const cfFilesInfo = document.getElementById('cfFilesInfo');
-  const cfSubmit = document.getElementById('cfSubmit');
   const cfFeedback = document.getElementById('cfFeedback');
 
-  if (!cfSubmit) return;
+  if (!form) return;
 
   let calculatorConfiguration = null;
   try {
@@ -98,7 +95,7 @@ const initContactForm = () => {
       const transferNote = document.createElement('div');
       transferNote.className = 'calculator-transfer-note';
       transferNote.innerHTML = '<strong>Preisrechner-Konfiguration übernommen</strong><span>Die ausgewählten Angaben und die Kostenschätzung wurden automatisch in die Nachricht eingefügt.</span>';
-      cfSubmit.closest('form')?.prepend(transferNote);
+      form.prepend(transferNote);
 
       if (cfSubject) {
         const matchingOption = [...cfSubject.options].find((option) => option.textContent.includes('Pflasterreinigung'));
@@ -113,6 +110,12 @@ ${calculatorConfiguration.summary}
 Zusätzliche Nachricht:
 `;
       }
+
+      const hiddenSummary = document.createElement('input');
+      hiddenSummary.type = 'hidden';
+      hiddenSummary.name = 'Preisrechner-Konfiguration';
+      hiddenSummary.value = calculatorConfiguration.summary || '';
+      form.appendChild(hiddenSummary);
     }
   } catch (error) {
     console.warn('Preisrechner-Konfiguration konnte nicht geladen werden.', error);
@@ -120,47 +123,82 @@ Zusätzliche Nachricht:
 
   if (cfFiles && cfFilesInfo) {
     cfFiles.addEventListener('change', () => {
-      const fileCount = cfFiles.files ? cfFiles.files.length : 0;
-      if (!fileCount) {
+      const files = cfFiles.files ? [...cfFiles.files] : [];
+      const totalSize = files.reduce((sum, file) => sum + file.size, 0);
+
+      if (totalSize > 10 * 1024 * 1024) {
+        cfFiles.value = '';
+        cfFilesInfo.textContent = 'Die ausgewählten Bilder sind zusammen größer als 10 MB. Bitte verkleinern und erneut auswählen.';
+        return;
+      }
+
+      if (!files.length) {
         cfFilesInfo.textContent = 'Keine Bilder ausgewählt';
-      } else if (fileCount === 1) {
-        cfFilesInfo.textContent = `1 Bild ausgewählt: ${cfFiles.files[0].name}`;
+      } else if (files.length === 1) {
+        cfFilesInfo.textContent = `1 Bild ausgewählt: ${files[0].name}`;
       } else {
-        cfFilesInfo.textContent = `${fileCount} Bilder ausgewählt`;
+        cfFilesInfo.textContent = `${files.length} Bilder ausgewählt`;
       }
     });
   }
 
-  cfSubmit.addEventListener('click', () => {
-    if (!cfName?.value || !cfEmail?.value || !cfMessage?.value) {
-      alert('Bitte fülle mindestens Name, E-Mail und Nachricht aus.');
+  const sentSuccessfully = new URLSearchParams(window.location.search).get('sent') === '1';
+  if (sentSuccessfully && cfFeedback) {
+    cfFeedback.hidden = false;
+    localStorage.removeItem(CALCULATOR_STORAGE_KEY);
+  }
+
+  form.addEventListener('submit', (event) => {
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      form.reportValidity();
       return;
     }
 
-    const payload = {
-      name: cfName.value,
-      email: cfEmail.value,
-      phone: cfPhone?.value || '',
-      subject: cfSubject?.value || '',
-      message: cfMessage.value,
-      files: cfFiles?.files ? [...cfFiles.files].map((file) => file.name) : [],
-      calculatorConfiguration
-    };
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Wird gesendet …';
+    }
+  });
+};
 
-    console.info('Kontaktformular gespeichert:', payload);
+const initExternalForms = () => {
+  const forms = document.querySelectorAll('form[action*="formsubmit.co"]:not(#contactForm)');
 
-    if (cfFeedback) {
-      cfFeedback.hidden = false;
+  forms.forEach((form) => {
+    const fileInputs = form.querySelectorAll('input[type="file"]');
+    const feedback = form.querySelector('.form-feedback');
+
+    fileInputs.forEach((fileInput) => {
+      fileInput.addEventListener('change', () => {
+        const files = fileInput.files ? [...fileInput.files] : [];
+        const totalSize = files.reduce((sum, file) => sum + file.size, 0);
+
+        if (totalSize > 10 * 1024 * 1024) {
+          fileInput.value = '';
+          alert('Die ausgewählten Dateien sind zusammen größer als 10 MB. Bitte verkleinere sie und versuche es erneut.');
+        }
+      });
+    });
+
+    if (new URLSearchParams(window.location.search).get('sent') === '1' && feedback) {
+      feedback.hidden = false;
     }
 
-    cfName.value = '';
-    cfEmail.value = '';
-    if (cfPhone) cfPhone.value = '';
-    if (cfSubject) cfSubject.selectedIndex = 0;
-    cfMessage.value = '';
-    if (cfFiles) cfFiles.value = '';
-    if (cfFilesInfo) cfFilesInfo.textContent = 'Keine Bilder ausgewählt';
-    if (calculatorConfiguration) localStorage.removeItem(CALCULATOR_STORAGE_KEY);
+    form.addEventListener('submit', (event) => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        form.reportValidity();
+        return;
+      }
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Wird gesendet …';
+      }
+    });
   });
 };
 
@@ -169,9 +207,9 @@ const initPriceCalculator = () => {
   const condition = document.getElementById('calcCondition');
   const areaInput = document.getElementById('calcArea');
   const areaRange = document.getElementById('calcAreaRange');
+  const cleaning = document.getElementById('calcCleaning');
   const joints = document.getElementById('calcJoints');
   const impregnation = document.getElementById('calcImpregnation');
-  const colorEnhancer = document.getElementById('calcColorEnhancer');
   const weedTreatment = document.getElementById('calcWeedTreatment');
   const jointSettings = document.getElementById('jointSettings');
   const jointMaterial = document.getElementById('calcJointMaterial');
@@ -217,9 +255,8 @@ const initPriceCalculator = () => {
       weed: { label: 'Unkrauthemmender Fugensand', pricePerKg: 1.9, laborPerSquareMeter: 4.25, densityKgPerLiter: 1.55 },
       polymer: { label: 'Polymer-Fugensand', pricePerKg: 3.2, laborPerSquareMeter: 6.5, densityKgPerLiter: 1.5 }
     },
-    impregnation: { label: 'Farblos imprägnieren', litersPerSquareMeter: 0.12, pricePerLiter: 6.3, laborPerSquareMeter: 4 },
-    colorEnhancer: { label: 'Farbvertiefender Schutz', litersPerSquareMeter: 0.14, pricePerLiter: 8.3, laborPerSquareMeter: 5 },
-    weedTreatment: { label: 'Thermische Unkrautbehandlung', pricePerSquareMeter: 1.2, minimum: 120 }
+    impregnation: { label: 'Extra Materialschutz', litersPerSquareMeter: 0.12, pricePerLiter: 6.3, laborPerSquareMeter: 4 },
+    weedTreatment: { label: 'Unkrautbehandlung', pricePerSquareMeter: 1.2, minimum: 120 }
   };
 
   let lastConfiguration = null;
@@ -235,8 +272,20 @@ const initPriceCalculator = () => {
     return Math.round((value + Number.EPSILON) * factor) / factor;
   };
 
-  const syncAreaFromNumber = () => {
-    const area = clampNumber(areaInput.value, 5, 1000, 50);
+  let lastValidArea = clampNumber(areaInput.value, 5, 1000, 50);
+
+  const readAreaWhileTyping = () => {
+    if (areaInput.value.trim() === '') return null;
+    const area = Number(areaInput.value);
+    if (!Number.isFinite(area) || area <= 0) return null;
+    lastValidArea = area;
+    areaRange.value = Math.min(Math.max(area, Number(areaRange.min)), Number(areaRange.max));
+    return area;
+  };
+
+  const normalizeArea = () => {
+    const area = clampNumber(areaInput.value, 5, 1000, lastValidArea || 50);
+    lastValidArea = area;
     areaInput.value = area;
     areaRange.value = Math.min(area, Number(areaRange.max));
     return area;
@@ -244,6 +293,7 @@ const initPriceCalculator = () => {
 
   const syncAreaFromRange = () => {
     const area = clampNumber(areaRange.value, 5, Number(areaRange.max), 50);
+    lastValidArea = area;
     areaInput.value = area;
     return area;
   };
@@ -315,22 +365,25 @@ const initPriceCalculator = () => {
   };
 
   const updateCalculator = () => {
-    const area = syncAreaFromNumber();
+    const area = readAreaWhileTyping();
+    if (area === null) return;
     const selectedStone = pricing.stones[stoneType.value] || pricing.stones.unknown;
     const selectedCondition = pricing.conditions[condition.value] || pricing.conditions.normal;
     const items = [];
 
-    const cleaningRate = pricing.cleaningPerSquareMeter * selectedStone.factor * selectedCondition.factor;
-    const cleaningTotal = area * cleaningRate;
-    items.push({
-      title: 'Flächenreinigung im Hochdruck-/Niederdruckverfahren',
-      total: cleaningTotal,
-      details: [
-        { label: 'Fläche', value: `${area} m²` },
-        { label: 'Preis je m²', value: formatEuro(cleaningRate) }
-      ],
-      note: `Steinfaktor ${selectedStone.factor.toFixed(2).replace('.', ',')} × Verschmutzungsfaktor ${selectedCondition.factor.toFixed(2).replace('.', ',')}.`
-    });
+    if (cleaning?.checked) {
+      const cleaningRate = pricing.cleaningPerSquareMeter * selectedStone.factor * selectedCondition.factor;
+      const cleaningTotal = area * cleaningRate;
+      items.push({
+        title: 'Flächenreinigung im Hochdruck-/Niederdruckverfahren',
+        total: cleaningTotal,
+        details: [
+          { label: 'Fläche', value: `${area} m²` },
+          { label: 'Preis je m²', value: formatEuro(cleaningRate) }
+        ],
+        note: `Steinfaktor ${selectedStone.factor.toFixed(2).replace('.', ',')} × Verschmutzungsfaktor ${selectedCondition.factor.toFixed(2).replace('.', ',')}.`
+      });
+    }
 
     if (joints?.checked) {
       const material = pricing.jointMaterials[jointMaterial?.value] || pricing.jointMaterials.standard;
@@ -365,20 +418,6 @@ const initPriceCalculator = () => {
       });
     }
 
-    if (colorEnhancer?.checked) {
-      const service = pricing.colorEnhancer;
-      const liters = Math.max(1, Math.ceil(area * service.litersPerSquareMeter));
-      const materialCost = liters * service.pricePerLiter;
-      const laborCost = area * service.laborPerSquareMeter;
-      items.push({
-        title: service.label,
-        total: materialCost + laborCost,
-        details: [
-          { label: 'Materialkosten', value: `${liters} L × ${formatEuro(service.pricePerLiter)} = ${formatEuro(materialCost)}` },
-          { label: 'Verarbeitung', value: `${area} m² × ${formatEuro(service.laborPerSquareMeter)} = ${formatEuro(laborCost)}` }
-        ]
-      });
-    }
 
     if (weedTreatment?.checked) {
       const service = pricing.weedTreatment;
@@ -390,21 +429,22 @@ const initPriceCalculator = () => {
         details: [
           { label: 'Behandlung', value: calculated < service.minimum ? `Mindestpauschale ${formatEuro(service.minimum)}` : `${area} m² × ${formatEuro(service.pricePerSquareMeter)}` }
         ],
-        note: 'Einmalige thermische Behandlung. Bei starkem Wiederbewuchs können weitere Termine sinnvoll sein.'
+        note: 'Manuelle oder mechanische Behandlung. Bei starkem Wiederbewuchs können weitere Termine sinnvoll sein.'
       });
     }
 
     const serviceNet = items.reduce((sum, item) => sum + item.total, 0);
-    const net = serviceNet + pricing.travelFlat;
+    const travel = items.length ? pricing.travelFlat : 0;
+    const net = serviceNet + travel;
     const vat = net * pricing.vatRate;
     const gross = net + vat;
     const grossPerSquareMeter = gross / area;
 
-    receiptItems.innerHTML = items.map(createReceiptItem).join('');
+    receiptItems.innerHTML = items.length ? items.map(createReceiptItem).join('') : '<div class="receipt-empty"><strong>Noch keine Arbeit ausgewählt</strong><span>Bitte wähle mindestens eine Leistung aus.</span></div>';
     if (receiptStone) receiptStone.textContent = selectedStone.label;
     if (receiptArea) receiptArea.textContent = `${area} m²`;
     if (receiptCondition) receiptCondition.textContent = selectedCondition.label;
-    if (receiptTravel) receiptTravel.textContent = formatEuro(pricing.travelFlat);
+    if (receiptTravel) receiptTravel.textContent = formatEuro(travel);
     if (receiptNet) receiptNet.textContent = formatEuro(net);
     if (receiptVat) receiptVat.textContent = formatEuro(vat);
     if (receiptGross) receiptGross.textContent = formatEuro(gross);
@@ -418,6 +458,7 @@ const initPriceCalculator = () => {
       condition: condition.value,
       conditionLabel: selectedCondition.label,
       area,
+      cleaning: Boolean(cleaning?.checked),
       joints: Boolean(joints?.checked),
       jointMaterial: jointMaterial?.value || null,
       stoneWidthCm: Number(stoneWidth?.value || 0),
@@ -425,10 +466,9 @@ const initPriceCalculator = () => {
       jointWidthMm: Number(jointWidth?.value || 0),
       jointDepthMm: Number(jointDepth?.value || 0),
       impregnation: Boolean(impregnation?.checked),
-      colorEnhancer: Boolean(colorEnhancer?.checked),
       weedTreatment: Boolean(weedTreatment?.checked),
       items: items.map((item) => ({ title: item.title, total: roundTo(item.total) })),
-      travel: pricing.travelFlat,
+      travel,
       net: roundTo(net),
       vat: roundTo(vat),
       gross: roundTo(gross),
@@ -438,13 +478,14 @@ const initPriceCalculator = () => {
   };
 
   areaInput.addEventListener('input', updateCalculator);
-  areaInput.addEventListener('change', updateCalculator);
+  areaInput.addEventListener('blur', () => { normalizeArea(); updateCalculator(); });
+  areaInput.addEventListener('change', () => { normalizeArea(); updateCalculator(); });
   areaRange.addEventListener('input', () => {
     syncAreaFromRange();
     updateCalculator();
   });
 
-  [stoneType, condition, joints, jointMaterial, stoneWidth, stoneLength, jointWidth, jointDepth, weedTreatment]
+  [stoneType, condition, cleaning, joints, jointMaterial, stoneWidth, stoneLength, jointWidth, jointDepth, weedTreatment, impregnation]
     .filter(Boolean)
     .forEach((element) => element.addEventListener('change', updateCalculator));
 
@@ -452,19 +493,16 @@ const initPriceCalculator = () => {
     .filter(Boolean)
     .forEach((element) => element.addEventListener('input', updateCalculator));
 
-  impregnation?.addEventListener('change', () => {
-    if (impregnation.checked && colorEnhancer) colorEnhancer.checked = false;
-    updateCalculator();
-  });
 
-  colorEnhancer?.addEventListener('change', () => {
-    if (colorEnhancer.checked && impregnation) impregnation.checked = false;
-    updateCalculator();
-  });
 
   inquiryButton?.addEventListener('click', () => {
     updateCalculator();
     if (!lastConfiguration) return;
+
+    if (!lastConfiguration.items.length) {
+      alert('Bitte wähle mindestens eine gewünschte Arbeit aus.');
+      return;
+    }
 
     localStorage.setItem(CALCULATOR_STORAGE_KEY, JSON.stringify(lastConfiguration));
     const target = window.location.protocol === 'file:'
@@ -561,7 +599,8 @@ const initCleanUrlDisplay = () => {
     ['/index.html', '/'],
     ['/preisrechner/index.html', '/preisrechner/'],
     ['/impressum/index.html', '/impressum/'],
-    ['/datenschutz/index.html', '/datenschutz/']
+    ['/datenschutz/index.html', '/datenschutz/'],
+    ['/karriere/index.html', '/karriere/']
   ]);
 
   const cleanPath = cleanPaths.get(window.location.pathname);
@@ -574,10 +613,19 @@ const initCleanUrlDisplay = () => {
   );
 };
 
-initCleanUrlDisplay();
-initBeforeAfterSliders();
-initImageGallery();
-initFaq();
-initContactForm();
-initPriceCalculator();
-initScrollReveal();
+const runInitializer = (initializer, name) => {
+  try {
+    initializer();
+  } catch (error) {
+    console.error(`${name} konnte nicht initialisiert werden.`, error);
+  }
+};
+
+runInitializer(initCleanUrlDisplay, 'Saubere URLs');
+runInitializer(initBeforeAfterSliders, 'Vorher-/Nachher-Slider');
+runInitializer(initImageGallery, 'Bildergalerie');
+runInitializer(initFaq, 'FAQ');
+runInitializer(initContactForm, 'Kontaktformular');
+runInitializer(initExternalForms, 'Weitere Formulare');
+runInitializer(initPriceCalculator, 'Preisrechner');
+runInitializer(initScrollReveal, 'Scroll-Animationen');

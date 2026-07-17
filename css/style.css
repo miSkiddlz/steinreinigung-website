@@ -2011,3 +2011,86 @@ body.js-ready .reveal-on-scroll.is-visible {
     overflow: hidden;
   }
 }
+
+/* ===== FINALISIERUNG: FORMULARE, REVIEWS UND KARRIERE ===== */
+.form-honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.contact-form button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
+.reviews-empty-state {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 30px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(14, 23, 40, 0.82), rgba(10, 16, 29, 0.96));
+  border: 1px solid rgba(74, 180, 255, 0.2);
+  box-shadow: var(--shadow);
+}
+
+.reviews-empty-state__icon {
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: rgba(43, 164, 255, 0.14);
+  border: 1px solid rgba(43, 164, 255, 0.3);
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.reviews-empty-state h3 {
+  margin-bottom: 10px;
+}
+
+.receipt-empty {
+  display: grid;
+  gap: 4px;
+  padding: 20px;
+  border-radius: 14px;
+  background: #f5f7fa;
+  border: 1px dashed #cbd2dc;
+  color: #1d2839;
+}
+
+.receipt-empty span {
+  color: #6c7584;
+  font-size: 0.9rem;
+}
+
+.career-hero {
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+}
+
+.career-benefits {
+  margin-bottom: 0;
+}
+
+@media (max-width: 760px) {
+  .reviews-empty-state {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .career-hero {
+    min-height: auto;
+  }
+}

@@ -22,6 +22,7 @@
         <a href="/#leistungen">Leistungen</a>
         <a href="/#bewertungen">Bewertungen</a>
         <a href="/preisrechner/index.html">Preisrechner</a>
+        <a href="/karriere/index.html">Karriere</a>
         <a href="/#kontakt">Kontakt</a>
       </nav>
     </div>
@@ -87,7 +88,7 @@
                 <label for="calcArea">Fläche in m²</label>
                 <div class="range-group range-group--with-value">
                   <div class="range-value-wrap">
-                    <input type="number" id="calcArea" min="5" max="1000" step="1" value="50">
+                    <input type="number" id="calcArea" min="5" max="1000" step="1" value="50" inputmode="numeric">
                     <span>m²</span>
                   </div>
                   <input type="range" id="calcAreaRange" min="5" max="300" step="1" value="50" aria-label="Fläche in Quadratmetern">
@@ -102,19 +103,19 @@
               <span class="calc-step">02</span>
               <div>
                 <h3 id="calcServicesHeading">Gewünschte Arbeiten</h3>
-                <p>Reinigung ist immer enthalten. Zusatzleistungen kannst du frei ergänzen.</p>
+                <p>Wähle frei aus, welche Arbeiten durchgeführt werden sollen.</p>
               </div>
             </div>
 
             <div class="option-grid">
-              <div class="option-card option-card--fixed">
-                <div class="option-card__check" aria-hidden="true">✓</div>
-                <div>
+              <label class="option-card">
+                <input type="checkbox" id="calcCleaning" checked>
+                <span class="option-card__check" aria-hidden="true"></span>
+                <span class="option-card__copy">
                   <strong>Flächenreinigung</strong>
                   <span>Hochdruck- oder materialschonendes Niederdruckverfahren</span>
-                </div>
-                <em>Enthalten</em>
-              </div>
+                </span>
+              </label>
 
               <label class="option-card">
                 <input type="checkbox" id="calcJoints">
@@ -129,26 +130,19 @@
                 <input type="checkbox" id="calcImpregnation">
                 <span class="option-card__check" aria-hidden="true"></span>
                 <span class="option-card__copy">
-                  <strong>Farblos imprägnieren</strong>
-                  <span>Wasser- und schmutzabweisender Schutz ohne Farbveränderung</span>
+                  <strong>Extra Materialschutz</strong>
+                  <span>Zusätzliche Schutzbehandlung für längere Haltbarkeit und leichtere Pflege</span>
                 </span>
               </label>
 
-              <label class="option-card">
-                <input type="checkbox" id="calcColorEnhancer">
-                <span class="option-card__check" aria-hidden="true"></span>
-                <span class="option-card__copy">
-                  <strong>Farbvertiefender Schutz</strong>
-                  <span>Schutzbehandlung mit stärkerer Betonung der Steinfarbe</span>
-                </span>
-              </label>
+
 
               <label class="option-card">
                 <input type="checkbox" id="calcWeedTreatment">
                 <span class="option-card__check" aria-hidden="true"></span>
                 <span class="option-card__copy">
-                  <strong>Thermische Unkrautbehandlung</strong>
-                  <span>Behandlung von starkem Unkrautbewuchs ohne chemische Zusätze</span>
+                  <strong>Unkrautbehandlung</strong>
+                  <span>Entfernung und Behandlung von störendem Unkrautbewuchs</span>
                 </span>
               </label>
             </div>
@@ -258,6 +252,7 @@
       </div>
       <div class="footer__links">
         <a href="/">Startseite</a>
+        <a href="/karriere/index.html">Karriere</a>
         <a href="/impressum/index.html">Impressum</a>
         <a href="/datenschutz/index.html">Datenschutz</a>
       </div>

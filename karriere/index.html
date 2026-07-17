@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karriere – Martin Reinigungstechnik</title>
+  <meta name="description" content="Karriere und Bewerbung bei Martin Reinigungstechnik in Trebur und Umgebung.">
+  <link rel="icon" type="image/png" href="/assets/icons/m.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="site-shell">
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <a href="/" class="logo" aria-label="Martin Reinigungstechnik Startseite">
+        <img src="/assets/icons/Reinigungstechnik-logo.svg" alt="Martin Reinigungstechnik Logo">
+      </a>
+      <nav class="nav">
+        <a href="/#leistungen">Leistungen</a>
+        <a href="/#bewertungen">Bewertungen</a>
+        <a href="/preisrechner/index.html">Preisrechner</a>
+        <a href="/karriere/index.html">Karriere</a>
+        <a href="/#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <section class="page-hero career-hero">
+      <div class="container page-hero__content">
+        <div class="page-hero__copy">
+          <span class="eyebrow">Karriere</span>
+          <h1>Saubere Arbeit. <span>Starkes Team.</span></h1>
+          <p>Du arbeitest zuverlässig, packst gerne mit an und möchtest sichtbare Ergebnisse schaffen? Dann freuen wir uns über deine Bewerbung.</p>
+          <a href="#bewerbung" class="btn btn--primary">Jetzt bewerben</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Was dich erwartet</span>
+          <h2>Arbeit, bei der man den <span>Unterschied sieht</span></h2>
+          <p>Wir suchen motivierte Unterstützung für Reinigungsarbeiten bei Privat- und Gewerbekunden in Trebur und Umgebung.</p>
+        </div>
+        <div class="why-grid career-benefits">
+          <article class="why-card"><h3>Abwechslungsreiche Einsätze</h3><p>Unterschiedliche Flächen, Objekte und Aufgaben statt eintöniger Routine.</p></article>
+          <article class="why-card"><h3>Moderne Technik</h3><p>Professionelle Geräte und klare Arbeitsabläufe für überzeugende Ergebnisse.</p></article>
+          <article class="why-card"><h3>Direkte Zusammenarbeit</h3><p>Kurze Wege, ehrliche Kommunikation und ein persönliches Arbeitsumfeld.</p></article>
+          <article class="why-card"><h3>Faire Bedingungen</h3><p>Die konkrete Tätigkeit, Arbeitszeit und Vergütung werden transparent besprochen.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--contact" id="bewerbung">
+      <div class="container contact-layout">
+        <div class="contact-copy">
+          <span class="eyebrow">Bewerbung</span>
+          <h2>Wir möchten dich <span>kennenlernen</span></h2>
+          <p>Schick uns ein paar Angaben zu dir. Ein Lebenslauf ist hilfreich, aber für eine erste Kontaktaufnahme nicht zwingend erforderlich.</p>
+          <ul class="contact-points">
+            <li>Kurzbewerbung in wenigen Minuten</li>
+            <li>Lebenslauf optional hochladen</li>
+            <li>Persönliche Rückmeldung</li>
+          </ul>
+        </div>
+
+        <form class="contact-form" action="https://formsubmit.co/info@martin-reinigungstechnik.com" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_subject" value="Neue Bewerbung über martin-reinigungstechnik.com">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://www.martin-reinigungstechnik.com/karriere/?sent=1">
+          <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="form-grid">
+            <div class="form-field"><label for="careerName">Name</label><input id="careerName" name="Name" type="text" required></div>
+            <div class="form-field"><label for="careerEmail">E-Mail</label><input id="careerEmail" name="email" type="email" required></div>
+            <div class="form-field"><label for="careerPhone">Telefon</label><input id="careerPhone" name="Telefon" type="tel"></div>
+            <div class="form-field"><label for="careerRole">Interesse</label><select id="careerRole" name="Gewünschte Tätigkeit"><option>Reinigungskraft / Mitarbeiter im Außendienst</option><option>Aushilfe / Minijob</option><option>Initiativbewerbung</option></select></div>
+            <div class="form-field"><label for="careerAvailability">Verfügbarkeit</label><input id="careerAvailability" name="Verfügbarkeit" type="text" placeholder="z. B. ab sofort, Mo–Fr"></div>
+            <div class="form-field"><label for="careerExperience">Erfahrung</label><select id="careerExperience" name="Berufserfahrung"><option>Keine Vorerfahrung</option><option>Erste Erfahrung</option><option>Mehrjährige Erfahrung</option></select></div>
+          </div>
+          <div class="form-field form-field--full"><label for="careerMessage">Kurze Nachricht</label><textarea id="careerMessage" name="Nachricht" required placeholder="Erzähl uns kurz etwas über dich und warum du mitarbeiten möchtest."></textarea></div>
+          <div class="form-field form-field--full"><label for="careerFile">Lebenslauf oder Bewerbung (optional)</label><input id="careerFile" name="Bewerbungsunterlagen" type="file" accept=".pdf,.doc,.docx,image/*"><small>PDF, Word oder Bilddatei – maximal 10 MB empfohlen.</small></div>
+          <button type="submit" class="btn btn--primary">Bewerbung absenden</button>
+          <div class="form-feedback career-success" hidden>Vielen Dank! Deine Bewerbung wurde erfolgreich gesendet.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand"><strong>Martin Reinigungstechnik</strong><p class="footer__copyright">© 2026 Martin Reinigungstechnik® All rights reserved.</p><p class="footer__tagline">Professionelle Reinigung für Privat &amp; Gewerbe.</p></div>
+      <div class="footer__links"><a href="/">Startseite</a><a href="/preisrechner/index.html">Preisrechner</a><a href="/karriere/index.html">Karriere</a><a href="/impressum/index.html">Impressum</a><a href="/datenschutz/index.html">Datenschutz</a></div>
+    </div>
+  </footer>
+</div>
+<script src="/js/script.js"></script>
+</body>
+</html>

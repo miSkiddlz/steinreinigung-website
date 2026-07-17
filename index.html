@@ -25,6 +25,7 @@
         <a href="#leistungen">Leistungen</a>
         <a href="#bewertungen">Bewertungen</a>
         <a href="/preisrechner/index.html">Preisrechner</a>
+        <a href="/karriere/index.html">Karriere</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
     </div>
@@ -252,60 +253,15 @@
     <section class="section section--dark reviews" id="bewertungen">
       <div class="container">
         <div class="section-heading">
-          <span class="eyebrow">Kundenstimmen</span>
-          <h2>Wir hinterlassen nicht nur saubere Flächen – <span>sondern bleibenden Eindruck</span></h2>
-          <p>So bewerten Kunden unsere Arbeit.</p>
+          <span class="eyebrow">Google Bewertungen</span>
+          <h2>Echte Erfahrungen statt <span>fremder Rezensionen</span></h2>
+          <p>Hier werden ausschließlich verifizierte Bewertungen von Martin Reinigungstechnik veröffentlicht.</p>
         </div>
 
-        <div class="reviews-marquee">
-          <div class="reviews-track">
-            <article class="review-card">
-              <div class="review-card__brand"><span class="google-wordmark" aria-hidden="true">Google</span><span class="review-stars">★★★★★</span></div>
-              <p>„Ich entdeckte die Firma Pflasterlux. Vom ersten Kontakt bis zur Ausführung hochmotiviert, freundlich und professionell. Das Ergebnis ist wirklich beeindruckend.“</p>
-              <div class="review-card__footer"><strong>Uwe Barck</strong><span>Google Rezension</span></div>
-            </article>
-
-            <article class="review-card">
-              <div class="review-card__brand"><span class="google-wordmark" aria-hidden="true">Google</span><span class="review-stars">★★★★★</span></div>
-              <p>„Richtig gute Leistung und ein tolles Team. Von der Auftragsklärung bis zur Durchführung super zufrieden. Das wird bestimmt nicht der letzte Auftrag gewesen sein.“</p>
-              <div class="review-card__footer"><strong>Christian Appel</strong><span>Google Rezension</span></div>
-            </article>
-
-            <article class="review-card">
-              <div class="review-card__brand"><span class="google-wordmark" aria-hidden="true">Google</span><span class="review-stars">★★★★★</span></div>
-              <p>„Super freundlicher Kontakt, tolle Beratung, zuverlässig und klasse Arbeit. Ganz klare Weiterempfehlung – ich freue mich schon auf den Sommer auf der ‚alten neuen‘ Terrasse.“</p>
-              <div class="review-card__footer"><strong>Ch St</strong><span>Google Rezension</span></div>
-            </article>
-
-            <article class="review-card">
-              <div class="review-card__brand"><span class="google-wordmark" aria-hidden="true">Google</span><span class="review-stars">★★★★★</span></div>
-              <p>„Kompetent, pünktlich und sauber gearbeitet. Gerade bei unserer Einfahrt hat man den Unterschied sofort gesehen. Sehr angenehme Zusammenarbeit.“</p>
-              <div class="review-card__footer"><strong>Lokaler Kunde</strong><span>Google Rezension</span></div>
-            </article>
-
-            <article class="review-card" aria-hidden="true">
-              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-stars">★★★★★</span></div>
-              <p>„Ich entdeckte die Firma Pflasterlux. Vom ersten Kontakt bis zur Ausführung hochmotiviert, freundlich und professionell. Das Ergebnis ist wirklich beeindruckend.“</p>
-              <div class="review-card__footer"><strong>Uwe Barck</strong><span>Google Rezension</span></div>
-            </article>
-
-            <article class="review-card" aria-hidden="true">
-              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-stars">★★★★★</span></div>
-              <p>„Richtig gute Leistung und ein tolles Team. Von der Auftragsklärung bis zur Durchführung super zufrieden. Das wird bestimmt nicht der letzte Auftrag gewesen sein.“</p>
-              <div class="review-card__footer"><strong>Christian Appel</strong><span>Google Rezension</span></div>
-            </article>
-
-            <article class="review-card" aria-hidden="true">
-              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-stars">★★★★★</span></div>
-              <p>„Super freundlicher Kontakt, tolle Beratung, zuverlässig und klasse Arbeit. Ganz klare Weiterempfehlung – ich freue mich schon auf den Sommer auf der ‚alten neuen‘ Terrasse.“</p>
-              <div class="review-card__footer"><strong>Ch St</strong><span>Google Rezension</span></div>
-            </article>
-
-            <article class="review-card" aria-hidden="true">
-              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-stars">★★★★★</span></div>
-              <p>„Kompetent, pünktlich und sauber gearbeitet. Gerade bei unserer Einfahrt hat man den Unterschied sofort gesehen. Sehr angenehme Zusammenarbeit.“</p>
-              <div class="review-card__footer"><strong>Lokaler Kunde</strong><span>Google Rezension</span></div>
-            </article>
+        <div class="reviews-empty-state">
+          <div class="reviews-empty-state__icon">G</div>
+          <div>
+            <h3>Google-Unternehmensprofil wird noch verknüpft</h3>
           </div>
         </div>
       </div>
@@ -388,23 +344,27 @@
           </ul>
         </div>
 
-        <form id="contactForm" class="contact-form">
+        <form id="contactForm" class="contact-form" action="https://formsubmit.co/info@martin-reinigungstechnik.com" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_subject" value="Neue Anfrage über martin-reinigungstechnik.com">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://www.martin-reinigungstechnik.com/?sent=1#kontakt">
+          <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-grid">
             <div class="form-field">
               <label for="cfName">Name</label>
-              <input type="text" placeholder="Max Mustermann" id="cfName" required>
+              <input type="text" placeholder="Max Mustermann" id="cfName" name="Name" required>
             </div>
             <div class="form-field">
               <label for="cfEmail">E-Mail</label>
-              <input type="email" placeholder="name@email.de" id="cfEmail" required>
+              <input type="email" placeholder="name@email.de" id="cfEmail" name="email" required>
             </div>
             <div class="form-field">
               <label for="cfPhone">Telefon (optional)</label>
-              <input type="tel" placeholder="0155 ..." id="cfPhone">
+              <input type="tel" placeholder="0155 ..." id="cfPhone" name="Telefon">
             </div>
             <div class="form-field">
               <label for="cfSubject">Leistung</label>
-              <select id="cfSubject">
+              <select id="cfSubject" name="Leistung">
                 <option>Pflasterreinigung</option>
                 <option>Terrassenreinigung</option>
                 <option>Gebäudereinigung</option>
@@ -416,17 +376,17 @@
 
           <div class="form-field form-field--full">
             <label for="cfMessage">Nachricht</label>
-            <textarea placeholder="Beschreibe kurz die Fläche oder dein Anliegen ..." id="cfMessage" required></textarea>
+            <textarea placeholder="Beschreibe kurz die Fläche oder dein Anliegen ..." id="cfMessage" name="Nachricht" required></textarea>
           </div>
 
           <div class="form-field form-field--full">
             <label for="cfFiles">Bilder hochladen (optional)</label>
-            <input type="file" id="cfFiles" accept="image/*" multiple>
+            <input type="file" id="cfFiles" name="Bilder" accept="image/*" multiple>
             <small id="cfFilesInfo">Keine Bilder ausgewählt</small>
           </div>
 
-          <button type="button" id="cfSubmit" class="btn btn--primary">Anfrage absenden</button>
-          <div id="cfFeedback" class="form-feedback" hidden>Danke! Deine Nachricht wurde gespeichert. Der Versand kann später mit einem Backend oder Dienst verbunden werden.</div>
+          <button type="submit" id="cfSubmit" class="btn btn--primary">Anfrage absenden</button>
+          <div id="cfFeedback" class="form-feedback" hidden>Danke! Deine Anfrage wurde erfolgreich gesendet.</div>
         </form>
       </div>
     </section>
@@ -441,6 +401,7 @@
       </div>
       <div class="footer__links">
         <a href="/preisrechner/index.html">Preisrechner</a>
+        <a href="/karriere/index.html">Karriere</a>
         <a href="/impressum/index.html">Impressum</a>
         <a href="/datenschutz/index.html">Datenschutz</a>
       </div>
