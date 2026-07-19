@@ -124,20 +124,27 @@ Zusätzliche Nachricht:
   if (cfFiles && cfFilesInfo) {
     cfFiles.addEventListener('change', () => {
       const files = cfFiles.files ? [...cfFiles.files] : [];
+      const maxFiles = Number(cfFiles.dataset.maxFiles || 3);
       const totalSize = files.reduce((sum, file) => sum + file.size, 0);
+
+      if (files.length > maxFiles) {
+        cfFiles.value = '';
+        cfFilesInfo.textContent = `Bitte wähle maximal ${maxFiles} Dateien aus.`;
+        return;
+      }
 
       if (totalSize > 10 * 1024 * 1024) {
         cfFiles.value = '';
-        cfFilesInfo.textContent = 'Die ausgewählten Bilder sind zusammen größer als 10 MB. Bitte verkleinern und erneut auswählen.';
+        cfFilesInfo.textContent = 'Die ausgewählten Dateien sind zusammen größer als 10 MB. Bitte verkleinern und erneut auswählen.';
         return;
       }
 
       if (!files.length) {
-        cfFilesInfo.textContent = 'Keine Bilder ausgewählt';
+        cfFilesInfo.textContent = 'Bis zu 3 Dateien, zusammen maximal 10 MB.';
       } else if (files.length === 1) {
-        cfFilesInfo.textContent = `1 Bild ausgewählt: ${files[0].name}`;
+        cfFilesInfo.textContent = `1 Datei ausgewählt: ${files[0].name}`;
       } else {
-        cfFilesInfo.textContent = `${files.length} Bilder ausgewählt`;
+        cfFilesInfo.textContent = `${files.length} Dateien ausgewählt: ${files.map((file) => file.name).join(', ')}`;
       }
     });
   }
@@ -222,6 +229,9 @@ const initPriceCalculator = () => {
   const receiptArea = document.getElementById('receiptArea');
   const receiptCondition = document.getElementById('receiptCondition');
   const receiptTravel = document.getElementById('receiptTravel');
+  const receiptDiscountRow = document.getElementById('receiptDiscountRow');
+  const receiptDiscountLabel = document.getElementById('receiptDiscountLabel');
+  const receiptDiscount = document.getElementById('receiptDiscount');
   const receiptNet = document.getElementById('receiptNet');
   const receiptVat = document.getElementById('receiptVat');
   const receiptGross = document.getElementById('receiptGross');
@@ -234,29 +244,34 @@ const initPriceCalculator = () => {
   // Alle Preise sind Netto-Richtwerte und können später zentral hier angepasst werden.
   const pricing = {
     vatRate: 0.19,
-    travelFlat: 80,
-    cleaningPerSquareMeter: 8,
+    travelFlat: 55,
+    cleaningPerSquareMeter: 6.5,
+    volumeDiscounts: [
+      { minArea: 200, rate: 0.15 },
+      { minArea: 100, rate: 0.10 },
+      { minArea: 50, rate: 0.05 }
+    ],
     stones: {
       concrete: { label: 'Betonpflaster / Betonstein', factor: 1 },
-      natural: { label: 'Naturstein', factor: 1.25 },
-      clinker: { label: 'Klinker / Ziegelpflaster', factor: 1.15 },
-      porcelain: { label: 'Feinsteinzeug / Keramik', factor: 1.1 },
-      washed: { label: 'Waschbeton', factor: 1.2 },
-      unknown: { label: 'Nicht sicher / Sonstiges', factor: 1.1 }
+      natural: { label: 'Naturstein', factor: 1.15 },
+      clinker: { label: 'Klinker / Ziegelpflaster', factor: 1.08 },
+      porcelain: { label: 'Feinsteinzeug / Keramik', factor: 1.05 },
+      washed: { label: 'Waschbeton', factor: 1.1 },
+      unknown: { label: 'Nicht sicher / Sonstiges', factor: 1.05 }
     },
     conditions: {
-      light: { label: 'Leicht verschmutzt', factor: 1 },
-      normal: { label: 'Normal verschmutzt', factor: 1.15 },
-      strong: { label: 'Stark verschmutzt', factor: 1.35 },
-      extreme: { label: 'Sehr stark verschmutzt', factor: 1.6 }
+      light: { label: 'Leicht verschmutzt', factor: 0.92 },
+      normal: { label: 'Normal verschmutzt', factor: 1 },
+      strong: { label: 'Stark verschmutzt', factor: 1.18 },
+      extreme: { label: 'Sehr stark verschmutzt', factor: 1.35 }
     },
     jointMaterials: {
-      standard: { label: 'Standard-Fugensand', pricePerKg: 1.2, laborPerSquareMeter: 3.5, densityKgPerLiter: 1.55 },
-      weed: { label: 'Unkrauthemmender Fugensand', pricePerKg: 1.9, laborPerSquareMeter: 4.25, densityKgPerLiter: 1.55 },
-      polymer: { label: 'Polymer-Fugensand', pricePerKg: 3.2, laborPerSquareMeter: 6.5, densityKgPerLiter: 1.5 }
+      standard: { label: 'Standard-Fugensand', pricePerKg: 1.1, laborPerSquareMeter: 2.8, densityKgPerLiter: 1.55 },
+      weed: { label: 'Unkrauthemmender Fugensand', pricePerKg: 1.7, laborPerSquareMeter: 3.5, densityKgPerLiter: 1.55 },
+      polymer: { label: 'Polymer-Fugensand', pricePerKg: 2.9, laborPerSquareMeter: 5.2, densityKgPerLiter: 1.5 }
     },
-    impregnation: { label: 'Extra Materialschutz', litersPerSquareMeter: 0.12, pricePerLiter: 6.3, laborPerSquareMeter: 4 },
-    weedTreatment: { label: 'Unkrautbehandlung', pricePerSquareMeter: 1.2, minimum: 120 }
+    impregnation: { label: 'Extra Materialschutz', litersPerSquareMeter: 0.12, pricePerLiter: 5.5, laborPerSquareMeter: 2.75 },
+    weedTreatment: { label: 'Unkrautbehandlung', pricePerSquareMeter: 0.9, minimum: 75 }
   };
 
   let lastConfiguration = null;
@@ -271,6 +286,9 @@ const initPriceCalculator = () => {
     const factor = 10 ** decimals;
     return Math.round((value + Number.EPSILON) * factor) / factor;
   };
+
+  const getVolumeDiscount = (area) =>
+    pricing.volumeDiscounts.find((tier) => area >= tier.minArea) || { minArea: 0, rate: 0 };
 
   let lastValidArea = clampNumber(areaInput.value, 5, 1000, 50);
 
@@ -353,6 +371,7 @@ const initPriceCalculator = () => {
       '',
       'Ausgewählte Leistungen:',
       itemLines,
+      ...(configuration.discount > 0 ? [`- Mengenrabatt (${Math.round(configuration.discountRate * 100)} %): −${formatEuro(configuration.discount)}`] : []),
       `- Anfahrt und Rüstzeit: ${formatEuro(configuration.travel)}`,
       '',
       `Gesamt Netto: ${formatEuro(configuration.net)}`,
@@ -433,7 +452,10 @@ const initPriceCalculator = () => {
       });
     }
 
-    const serviceNet = items.reduce((sum, item) => sum + item.total, 0);
+    const serviceSubtotal = items.reduce((sum, item) => sum + item.total, 0);
+    const discountTier = items.length ? getVolumeDiscount(area) : { minArea: 0, rate: 0 };
+    const discount = serviceSubtotal * discountTier.rate;
+    const serviceNet = serviceSubtotal - discount;
     const travel = items.length ? pricing.travelFlat : 0;
     const net = serviceNet + travel;
     const vat = net * pricing.vatRate;
@@ -445,6 +467,9 @@ const initPriceCalculator = () => {
     if (receiptArea) receiptArea.textContent = `${area} m²`;
     if (receiptCondition) receiptCondition.textContent = selectedCondition.label;
     if (receiptTravel) receiptTravel.textContent = formatEuro(travel);
+    if (receiptDiscountRow) receiptDiscountRow.hidden = discount <= 0;
+    if (receiptDiscountLabel) receiptDiscountLabel.textContent = `Mengenrabatt (${Math.round(discountTier.rate * 100)} %)`;
+    if (receiptDiscount) receiptDiscount.textContent = `−${formatEuro(discount)}`;
     if (receiptNet) receiptNet.textContent = formatEuro(net);
     if (receiptVat) receiptVat.textContent = formatEuro(vat);
     if (receiptGross) receiptGross.textContent = formatEuro(gross);
@@ -468,6 +493,9 @@ const initPriceCalculator = () => {
       impregnation: Boolean(impregnation?.checked),
       weedTreatment: Boolean(weedTreatment?.checked),
       items: items.map((item) => ({ title: item.title, total: roundTo(item.total) })),
+      serviceSubtotal: roundTo(serviceSubtotal),
+      discountRate: discountTier.rate,
+      discount: roundTo(discount),
       travel,
       net: roundTo(net),
       vat: roundTo(vat),
@@ -592,6 +620,49 @@ const initScrollReveal = () => {
 
 
 
+const initNavigationMenu = () => {
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav');
+  if (!toggle || !nav) return;
+
+  const setOpen = (open) => {
+    nav.classList.toggle('is-open', open);
+    toggle.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  };
+
+  toggle.addEventListener('click', (event) => {
+    event.stopPropagation();
+    setOpen(!nav.classList.contains('is-open'));
+  });
+
+  nav.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setOpen(false);
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.topbar__actions')) setOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setOpen(false);
+  });
+};
+
+const initReviewMarquee = () => {
+  const track = document.querySelector('.reviews-track');
+  if (!track || track.dataset.loopReady === 'true') return;
+
+  const cards = [...track.children];
+  cards.forEach((card) => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
+
+  track.dataset.loopReady = 'true';
+};
+
 const initCleanUrlDisplay = () => {
   if (!['http:', 'https:'].includes(window.location.protocol)) return;
 
@@ -622,8 +693,10 @@ const runInitializer = (initializer, name) => {
 };
 
 runInitializer(initCleanUrlDisplay, 'Saubere URLs');
+runInitializer(initNavigationMenu, 'Navigationsmenü');
 runInitializer(initBeforeAfterSliders, 'Vorher-/Nachher-Slider');
 runInitializer(initImageGallery, 'Bildergalerie');
+runInitializer(initReviewMarquee, 'Bewertungs-Vorschau');
 runInitializer(initFaq, 'FAQ');
 runInitializer(initContactForm, 'Kontaktformular');
 runInitializer(initExternalForms, 'Weitere Formulare');

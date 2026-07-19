@@ -21,13 +21,25 @@
       <a href="/" class="logo" aria-label="Martin Reinigungstechnik Startseite">
         <img src="/assets/icons/Reinigungstechnik-logo.svg" alt="Martin Reinigungstechnik Logo">
       </a>
-      <nav class="nav">
+      <div class="topbar__actions">
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+
+          <span class="menu-toggle__label">Menü</span>
+
+          <span class="menu-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+
+        </button>
+
+        <nav class="nav" id="site-navigation" aria-label="Hauptnavigation">
         <a href="#leistungen">Leistungen</a>
         <a href="#bewertungen">Bewertungen</a>
         <a href="/preisrechner/index.html">Preisrechner</a>
         <a href="/karriere/index.html">Karriere</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
+
+      </div>
     </div>
   </div>
 
@@ -253,15 +265,48 @@
     <section class="section section--dark reviews" id="bewertungen">
       <div class="container">
         <div class="section-heading">
-          <span class="eyebrow">Google Bewertungen</span>
-          <h2>Echte Erfahrungen statt <span>fremder Rezensionen</span></h2>
-          <p>Hier werden ausschließlich verifizierte Bewertungen von Martin Reinigungstechnik veröffentlicht.</p>
+          <span class="eyebrow">Kundenstimmen</span>
+          <h2>Vertrauen entsteht durch <span>echte Erfahrungen</span></h2>
+          <p>Wir hinterlassen nicht nur Sauberkeit – sondern auch einen bleibenden Eindruck.</p>
         </div>
 
-        <div class="reviews-empty-state">
-          <div class="reviews-empty-state__icon">G</div>
-          <div>
-            <h3>Google-Unternehmensprofil wird noch verknüpft</h3>
+        <div class="reviews-marquee" aria-label="Vorschau des späteren Bewertungsbereichs">
+          <div class="reviews-track">
+            <article class="review-card">
+              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-card__badge">07.26</span></div>
+              <p>„Sehr freundlicher Kontakt und eine saubere, zuverlässige Ausführung. Unsere Einfahrt wirkt wieder deutlich gepflegter.“</p>
+              <div class="review-card__footer"><strong>Jürgen M.</strong><span class="review-stars">★★★★★</span></div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-card__badge">07.26</span></div>
+              <p>„Die Beratung war verständlich und transparent. Termin und Ergebnis haben unseren Erwartungen entsprochen.“</p>
+              <div class="review-card__footer"><strong>Anonym</strong><span class="review-stars">★★★★★</span></div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-card__badge">07.26</span></div>
+              <p>„Schnelle Rückmeldung, pünktlich vor Ort und alles ordentlich hinterlassen. Klare Empfehlung für die Pflasterreinigung.“</p>
+              <div class="review-card__footer"><strong>Anna C.</strong><span class="review-stars">★★★★★</span></div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-card__badge">07.26</span></div>
+              <p>„Der Unterschied auf unserer Terrasse ist sofort sichtbar. Besonders positiv war die unkomplizierte Abstimmung.“</p>
+              <div class="review-card__footer"><strong>Leonard G.</strong><span class="review-stars">★★★★★</span></div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-card__badge">07.26</span></div>
+              <p>„Faire Einschätzung, nachvollziehbarer Preis und ein sehr gutes Endergebnis. Wir würden den Service erneut buchen.“</p>
+              <div class="review-card__footer"><strong>Anonym</strong><span class="review-stars">★★★★★</span></div>
+            </article>
+
+            <article class="review-card">
+              <div class="review-card__brand"><span class="google-wordmark">Google</span><span class="review-card__badge">07.26</span></div>
+              <p>„Professioneller Ablauf vom ersten Kontakt bis zur fertigen Fläche. Die Arbeit wurde sorgfältig und zügig ausgeführt.“</p>
+              <div class="review-card__footer"><strong>Christian W.</strong><span class="review-stars">★★★★★</span></div>
+            </article>
           </div>
         </div>
       </div>
@@ -318,7 +363,7 @@
           <div class="faq-item">
             <button class="faq-question" type="button">Kann ich Bilder direkt mitsenden?</button>
             <div class="faq-answer">
-              <p>Ja, über das Kontaktformular kannst du jetzt Bilder der zu reinigenden Fläche hochladen. Das erleichtert die erste Einschätzung deutlich.</p>
+              <p>Ja, über das Kontaktformular kannst du bis zu drei Bilder oder Dokumente anhängen. Das erleichtert die erste Einschätzung deutlich.</p>
             </div>
           </div>
           <div class="faq-item">
@@ -336,11 +381,11 @@
         <div class="contact-copy">
           <span class="eyebrow">Kontakt</span>
           <h2>Jetzt kostenlos <span>anfragen</span></h2>
-          <p>Schick uns deine Anfrage direkt über das Formular. Wenn du möchtest, kannst du Bilder der Fläche direkt mitsenden.</p>
+          <p>Schick uns deine Anfrage direkt über das Formular. Wenn du möchtest, kannst du bis zu drei Bilder oder Dokumente direkt mitsenden.</p>
           <ul class="contact-points">
             <li>Schnelle Rückmeldung</li>
             <li>Unverbindliche Ersteinschätzung</li>
-            <li>Bilderupload für bessere Planung</li>
+            <li>Bis zu 3 Anhänge für eine bessere Planung</li>
           </ul>
         </div>
 
@@ -380,9 +425,9 @@
           </div>
 
           <div class="form-field form-field--full">
-            <label for="cfFiles">Bilder hochladen (optional)</label>
-            <input type="file" id="cfFiles" name="Bilder" accept="image/*" multiple>
-            <small id="cfFilesInfo">Keine Bilder ausgewählt</small>
+            <label for="cfFiles">Bilder oder Dateien anhängen (optional, max. 3)</label>
+            <input type="file" id="cfFiles" name="Anhaenge" accept="image/*,.pdf,.doc,.docx" multiple data-max-files="3">
+            <small id="cfFilesInfo">Bis zu 3 Dateien, zusammen maximal 10 MB.</small>
           </div>
 
           <button type="submit" id="cfSubmit" class="btn btn--primary">Anfrage absenden</button>
@@ -397,6 +442,7 @@
       <div class="footer__brand">
         <strong>Martin Reinigungstechnik</strong>
         <p class="footer__copyright">© 2026 Martin Reinigungstechnik® All rights reserved.</p>
+        <p class="footer__credit">Designed and developed by <a href="https://www.linkedin.com/in/dennis-martin-1b48523a5/" target="_blank" rel="noopener noreferrer">Malcolm</a></p>
         <p class="footer__tagline">Professionelle Reinigung für Privat &amp; Gewerbe.</p>
       </div>
       <div class="footer__links">
